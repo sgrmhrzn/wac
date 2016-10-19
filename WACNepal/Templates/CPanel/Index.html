@@ -1,0 +1,172 @@
+﻿
+<div ng-show="loading" class="loading"><h1>LOADING...</h1></div>
+
+<style>
+    /* Styles for this demo page */
+
+</style>
+<!--<script>tinymce.init({ selector: 'textarea' });</script>-->
+
+<div class="divList" style="margin-top:60px;min-height:400px;width:1250px">
+    <input type="button" class="btnAdd" value=" Add Project" ng-click="AddProjectDiv()" />
+    <table cellpadding="12" class="table table-bordered table-hover">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Image</b></td>
+            <td><b>Title</b></td>
+            <td><b>Description</b></td>
+            <td><b>Category</b></td>
+            <td><b>Duration</b></td>
+            <td><b>Youtube</b></td>
+            <td><b>Status</b></td>
+            <td><b>Action</b></td>
+        </tr>
+        <tr ng-repeat="project in projects">
+            <td>
+                {{project.id}}
+            </td>
+            <td>
+                <img ng-src="/Handler/ProjectImageHandler.ashx?id={{project.id}}" style="max-width:250px; width:100%; height:100px;" />
+            </td>
+            <td>
+                {{project.title}}
+            </td>
+           
+            <td>
+                {{project.description}}
+            </td>
+            <td>
+                {{project.category}}
+            </td>
+            <td>
+                {{project.duration}}
+            </td>
+            <td>
+                {{project.ytubeLink}}
+            </td>
+            <td>
+                {{project.project_status}}
+            </td>
+            <td>
+                <span data-ng-click="editProject(project)" class="btnAdd">Edit</span>
+                <span data-ng-click="deleteEmployee(project)" class="btnRed">Del</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div ng-show="divProject" class="add-edit-box">
+    <p class="divHead">{{Action}} Projects</p>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Id</label>
+            <div class="col-md-10">
+                <input type="text" data-ng-model="project.id" name="title" class="form-control" disabled="disabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+                <input type="text" data-ng-model="project.title" name="title" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+                <textarea ui-tinymce data-ng-model="project.description" name="description" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Category</label>
+            <div class="col-md-10">
+                <input type="text" data-ng-model="project.category" name="category" class="form-control"  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Duration</label>
+            <div class="col-md-10">
+                <input type="text" data-ng-model="project.duration" name="duration" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-md-2 control-label">YouTueb Link</label>
+            <div class="col-md-10">
+                <input type="text" data-ng-model="project.ytubeLink" name="youtub" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Project Status</label>
+            <div class="col-md-10">
+                <select data-ng-model="project.project_status" name="status" class="form-control">
+                    <option value="">---Please select---</option>
+                    <option>ongoing</option>
+                    <option>completed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="attachment" class="col-md-2 control-label">Image</label>
+            <section class="uploadMain">
+                    <div ng-show="imageCropStep == 1">
+                        <br />
+                        <input type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+                    </div>
+
+                    <div ng-show="imageCropStep == 2">
+                        <!-- <image-crop
+                      data-height="200" //shape's height
+                      data-width="150" //shape's width
+                      data-shape="square" //the shape.. square or circle
+                      data-step="imageCropStep"//scope variable that will contain the current step of the crop (1. Waiting for source image; 2. Image loaded, waiting for crop; 3. Crop done)
+                      src="imgSrc" //scope variable that will be the source image for the crop (may be a Blob or base64 string)
+                      data-result-blob="result" //scope variable that will contain the Blob information
+                      data-result="resultDataUrl" //scope variable that will contain the image's base64 string representation
+                      crop="initCrop" //scope variable that must be set to true when the image is ready to be cropped
+                      padding="250" //space, in pixels, rounding the shape
+                      max-size="1024" //max of the image, in pixels
+                    ></image-crop> -->
+
+                        <image-crop data-height="540"
+                                    data-width="840"
+                                    data-shape="rectangle"
+                                    data-step="imageCropStep"
+                                    src="imgSrc"
+                                    data-result="result"
+                                    data-result-blob="resultBlob"
+                                    crop="initCrop"
+                                    padding="100"
+                                    max-size="1024"></image-crop>
+                    </div>
+
+                    <div ng-show="imageCropStep == 2">
+                        <br />
+                        <button ng-click="clear()">Cancel</button>
+                        <button ng-click="initCrop = true">Crop</button>
+                    </div>
+
+                    <div ng-show="imageCropStep == 3">
+                        <img ng-src="{{result}}" class="cropped" data-ng-model="project.base64"></img>
+
+                        <button ng-click="clear()">Cancel</button>
+
+                    </div>
+
+            </section>
+
+        </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="btn btn-primary" value="Save" data-ng-click="AddUpdateProject(project)" />
+            <input type="button" value="Cancel" ng-click="divProject = !divProject" class="btn" />
+        </div>
+    </div>
+</form>
+</div>

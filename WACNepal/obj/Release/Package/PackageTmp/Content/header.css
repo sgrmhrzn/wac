@@ -1,0 +1,79 @@
+﻿#responsive-menu a:hover, nav ul a:hover{   color:yellow;cursor:pointer;}
+.dropdown {display:inline;position:relative}
+.dropdown-content{display:none;}
+.dropdown-content a{padding: 10px 40px 0px 30px; text-align:justify}
+.dropdown:hover .dropdown-content{display:block}
+
+#responsive-menu{ display: none;  }
+         
+header{padding:0px; position:fixed;width:100%; z-index:222;top:0px;  }
+
+        nav{ border-bottom:2px solid #3e9bd6;height:80px;margin:auto;width:100%;background-color:#3e9bd6;position:fixed}
+        .inner-menu{height:20px;border-bottom:thin solid #5aaadc}
+        #logo{width:105px; height:105px;margin:-20px auto; border-radius: 50px;}
+
+        .secondary-menu{ height:30px; background-color:aliceblue; width:100%; }
+
+
+ @media(max-width: 760px){
+                       /*dropdwonmenu*/
+                        .dropdown{width:100%}
+                        .dropdown-content{position:inherit;}
+                        .dropdown-content a{background-color:#CACACA;}
+
+
+
+                      #static-menu{display:none}
+                      #responsive-menu { height:100%; clear: both;background-color:aliceblue;position:fixed;z-index:333;right:0px;top: 60px;}
+
+                     #responsive-menu a{  padding: 10px 40px 10px 40px; height:35px; font-size: 23px;display: block; text-decoration: none;color: #2B2B2B;     }
+
+                      #navWrap {   margin: auto; width: 90%; height: 60px;   }
+
+                      #responsive-menu{    }
+                                      /*
+                ******n scroll function css for Menu and logo
+                */  .sticky {  position: fixed;top:0;margin:auto;background-color: aliceblue;left: 0px;border-bottom: thin solid #D4D4D4;z-index: 2;box-shadow: 1px 1px 10px 0px #797979;width: 100%;  }
+
+                    .sticky .new{   clear: both;  min-width: 300px;margin:auto;    margin-top: 20px;   }
+
+                    .logo{      margin: 0px;  opacity:0 ;   padding-left: 90px;     }
+}
+/*----end of max widht-----------------------*/
+   
+@media(min-width: 760px){
+                           /*dropdwonmenu*/
+                       .dropdown-content{position:absolute;background-color:aliceblue;top:60px;border-bottom: 2px solid #097300; }
+                       .dropdown-content a{background-color:aliceblue;width:185px;color:#2B2B2B}
+                       .dropdown-content a:hover{width:185px;color:#3e9bd6}
+
+                       
+
+
+                #menuIcon{display:none}
+                #responsive-menu{display:none}
+                nav ul{  margin: auto;height:65px;width:760px;padding:0px}
+
+                nav ul a{ height:45px; font-size: 19px; display: block; float: left;padding:0px 25px 0px 25px; text-align: center;text-decoration: none;color:aliceblue ;   }
+                nav ul li{float:left;list-style:none;display:block;padding:20px 0px;}
+                .active{background-color:yellow}
+
+                #navWrap {  margin: auto;  width: 90%;  height: 60px;  }
+
+                /*
+        ******n scroll function css for Menu and logo
+        */
+                .sticky {  position: fixed; top:0; height:60px;  width: 100%;   margin:auto; background-color: aliceblue;left: 0px;border-bottom: thin solid #D4D4D4;z-index: 2;box-shadow: 1px 1px 10px 0px #797979; }
+    
+                .sticky .new{  width: 1200px; margin:auto; }
+
+                .logo{  opacity:0 ;  padding-left: 90px;     }
+
+}
+/*eennd of media minWidth:100px    
+    ***************
+    ************end of responsive menu**************
+    **************************
+
+
+*/

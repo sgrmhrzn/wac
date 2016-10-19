@@ -1,0 +1,22 @@
+﻿<container ng-controller="ProjectController" style="min-height:950px;">
+
+    <section class="row" style="margin:5% auto;min-height:400px;border-top: thin solid #cecece ">
+
+        <article id="title-box">
+            <div id="title">Completed Projects</div>
+            <div id="triangle-topleft"></div>
+        </article>
+         
+        <section class="col-12 col-m-12">
+            <div ng-show="loading" class="loading"></div>
+            <article ng-repeat="project in completedProjects" id="mini-container-3" class="col-13 col-m-8" style="background-image:url('../../Handler/ProjectThumbnailHandler.ashx?id={{project.id}}');background-size:cover">
+                <div class="textTitle">
+                    <h3 style="height:100px;">{{project.title}}</h3>
+                    <span class="btnReadmore"><a href="/Projects/Detail/{{project.id}}" ng-click="getProjectById(project)">Read More >></a></span>
+                </div>
+            </article>
+            <div class="view-all-box"><a href="#">VIEW ALL</a></div>
+        </section>
+    </section>
+</container>
+

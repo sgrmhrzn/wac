@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    @*<script src="../../Scripts/tinymce/tinymce.min.js"></script>*@
+    <link rel="stylesheet" href="../../Content/image-crop-styles.css">
+    @Styles.Render("~/Content/css")
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/AngularJs/angular.min.js"></script>
+    <script src="~/Scripts/AngularJs/angular-route.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.js"></script>
+@Scripts.Render("~/bundles/application")
+
+
+
+
+</head>
+<body data-ng-app="application">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar">hello</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("File Upload", "Index", "CPanel", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/CPanel">Projects</a></li>
+                    <li><a href="/CPanelStories">Success</a></li>
+                    <li><a href="/CPanelNews">News</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" style="min-height:500px;max-width:1300px;margin:auto">
+
+        @RenderBody()
+        <div class="page {{ pageClass }}" ng-view></div>
+        <hr />
+
+
+        <style>
+            .uploadMain {
+                font-size: 12px;
+                font-family: Helvetica, Arial;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            .cropped{margin:5%}
+
+            .add-edit-box{position: absolute;margin: 10% 9%;z-index:99;top: 0px;left:0px;background-color: aliceblue;border: thin solid gray; width: 1100px;padding: 5%;}
+            .btnAdd,.btnRed{    display: inline-block; margin: 10px}
+            body{
+                    font-size: 14px;
+            }
+            .loading {
+                position: fixed;
+                margin: 20% 35%;
+                z-index: 99999;
+                top: 0px;
+                background-color: aliceblue;
+                border: thin solid gray;
+                width: auto;
+                padding: 2%;
+            }
+            #footer-triangle {
+                max-width: 500px;
+                height: 0;
+                border-bottom: 250px solid #3e9bd6;
+                border-right: 250px solid transparent;
+                position: relative;
+            }
+
+            #bottom-footer a {
+                color: #0f202f;
+            }
+
+                #bottom-footer a:hover {
+                    text-decoration: underline;
+                }
+
+            #footer-box {
+                display: inline-flex;
+                width: auto;
+            }
+
+            #footer-right {
+                background-color: #3e9bd6;
+                max-width: 800px;
+                color: aliceblue;
+                padding: 3% 5%;
+                display: inline-block;
+            }
+
+            footer #col-2 {
+                text-align: left;
+            }
+        </style>
+        <footer>
+            <div style="width:160px;position:absolute;border-bottom: 250px solid #3e9bd6;border-right: 250px solid transparent;"></div>
+            <div style="background-color:#0f202f">
+            </div>
+
+            <section class="row-4" id="bottom-footer" style="height:50px;border-top: 0.1em solid #757575;color:#0f202f;font-weight:bold">
+                Developers Info: <a href="http://www.sagarmaharjan.com.np" target="_blank">Sagar</a>& <a href="http://www.pritisharma.com.np" target="_blank">Priti</a><span style="float:right">Powered by: Sristy-ive </span>
+            </section>
+        </footer> 
+        
+    </div>
+</body>
+@*@Scripts.Render("~/bundles/Scripts")*@
+@*@Scripts.Render("~/bundles/bootstrap")*@
+
+
+</html>

@@ -1,0 +1,96 @@
+﻿<section id="sliderBack" style="width:100%;margin-top: -3%;">
+    <section>
+        <section id="imgslider" style="border-radius: 0 0 50% 50% / 10%;background-image:url(../../Images/banner-csr-bg.jpg);height:430px;-webkit-border-radius:0 0 50% 50% / 8%;background-size:cover">
+        </section>
+    </section>
+</section>
+
+
+<container ng-controller="homeController" style="min-height:950px;">
+
+    <section class="row-3" id="intro" style="border-bottom:thin solid #cecece;padding: 40px 0px 50px 0px">
+        <p class="row-p">
+            <strong> WAC- Nepal is a locally emerged NGO registered under the Achham District Administration Office and is allied to Social Welfare Council and affiliated with NGO Federation Nepal. It is affiliation with Human Right and Social Justice Forum-Nepal and NANGAN-Nepal.</strong>
+        </p>
+    </section>
+    <section class="row" style=" padding-top: 25px;margin:2%">
+        <div class="col-9 col-m-12 ">
+
+            <!--Stories-->
+            <article id="title-box"> <div id="title">Success Stories </div> <div id="triangle-topleft"></div> </article>
+            <div class="inner-row-2">
+                <div ng-show="loading" class="loading"></div>
+                <article ng-repeat="story in stories" id="mini-container-3" class="col-14 col-m-8" style="background-image:url('../../Handler/StoriesThumbnailHandler.ashx?id={{story.id}}');background-size:cover;background-repeat:no-repeat">
+                    <div class="textTitle">
+                        <h3 style="height:100px;">{{story.title}}</h3>
+                        <span class="btnReadmore"><a>Read More >></a></span>
+                    </div>
+                </article>
+                <div class="view-all-box"><a href="/Stories/">VIEW ALL</a></div>
+
+            </div>
+
+
+            <!--ongoing projects-->
+            <article id="title-box"><div id="title">On Going Projects</div><div id="triangle-topleft"></div></article>
+            <div class="inner-row-2">
+                <div ng-show="loading" class="loading"></div>
+                <article ng-repeat="project in ongoingProjects" id="mini-container-3" class="col-14 col-m-8" style="background-image:url('../../Handler/ProjectThumbnailHandler.ashx?id={{project.id}}');background-size:cover;background-repeat:no-repeat">
+                    <div class="textTitle">
+                        <h3 style="height:100px;">{{project.title}}</h3>
+                        <span class="btnReadmore"><a href="Projects/Detail/{{project.id}}" ng-click="getProjectById(project)">Read More >></a></span>
+                    </div>
+                </article>
+                <div class="view-all-box"><a href="Projects/Ongoing/">VIEW ALL</a></div>
+
+            </div>
+        </div>
+
+
+        <!--side bar for recent news-->
+        <div class="col-3 col-m-12">
+            <aside>
+                <article>
+                    <div style="width: 100%;background-color: #3e9bd6;text-align: center;color:aliceblue;font-size:22px;">Recent </div>
+                </article>
+
+            </aside>
+        </div>
+    </section>
+
+
+    <section class="row" style="margin:5% auto;min-height:400px;border-top: thin solid #cecece ">
+
+        <article id="title-box">
+            <div id="title">Completed Projects</div>
+            <div id="triangle-topleft"></div>
+        </article>
+         
+        <section class="col-12 col-m-12">
+            <div ng-show="loading" class="loading"></div>
+            <article ng-repeat="project in completedProjects" id="mini-container-3" class="col-13 col-m-8" style="background-image:url('../../Handler/ProjectThumbnailHandler.ashx?id={{project.id}}');background-size:cover">
+                <div class="textTitle">
+                    <h3 style="height:100px;">{{project.title}}</h3>
+                    <span class="btnReadmore"><a href="Projects/Detail/{{project.id}}" ng-click="getProjectById(project)">Read More >></a></span>
+                </div>
+            </article>
+            <div class="view-all-box"><a href="Projects/Completed/">VIEW ALL</a></div>
+        </section>
+    </section>
+</container>
+
+
+
+<section class="row-1" style="min-height:250px;border-top: thin solid #cecece ">
+    <article id="title-box" class="title-centre" >
+        <div id="triangle-topright"></div>
+        <div id="title" style="min-width:200px">Our Goal</div>
+        <div id="triangle-topleft"></div>
+    </article>
+    <div style="text-align:center;margin:3% 0"><p class="row-p" style="text-decoration:solid"><strong>To bring improvement in the stages and the area of capacity building of target groups by improving sustainable livelihood, health and long- lives, disaster management, good governance and security or organizational development.</strong></p></div>
+
+</section>
+
+<section style="min-height:300px;width: 100%;box-shadow: 0px 1px 5px #929a9e;background-color:aliceblue">
+
+</section>

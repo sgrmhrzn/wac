@@ -1,0 +1,25 @@
+﻿body {
+    width:90%;
+    border:thin solid;
+    margin:auto;
+}
+
+li{
+    display:block;
+    height:20px;
+    background-color:lightcyan;
+    float:left;
+    list-style:none;
+    padding:10px;
+    display:inline;
+}
+a{
+    text-decoration:none;
+}
+li:before{
+    background-color:yellow;
+}
+li:hover{
+    background-color:wheat;
+    cursor:pointer;
+}

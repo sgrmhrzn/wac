@@ -1,0 +1,36 @@
+﻿<title>Success Stories</title>
+
+<link async href="../../../Content/home.css" rel="stylesheet" type="text/css" />
+<style>h2{padding:0 2%;} 
+#triangle-topleft {
+	width: 0;
+	height: 0;
+	border-top: 40px solid #3e9bd6;
+	border-right: 40px solid transparent;
+    float:right;
+}
+#triangle-topright {
+	width: 0;
+	height: 0;
+	border-top: 40px solid #3e9bd6;
+	border-left: 40px solid transparent;
+    float:right;
+}
+#title-box{display:inline-flex;width:auto;}
+#title{min-width:300px;background-color: #3e9bd6;font-size:24px;color:aliceblue;padding:1% 5%;display:inline-block;/*box-shadow: -2px 2px 5px #888888;*/}
+.title-centre{margin:0 36%; text-align:center}
+    </style>
+            <!--Stories-->
+            <article  id="title-box"> <div id="title">Success Stories </div> <div id="triangle-topleft"></div> </article>
+            <div ng-controller="StoriesController" class="inner-row-2">
+                <div ng-show="loading" class="loading"><h1>LOADING...</h1></div>
+                <article ng-repeat="story in stories" id="right-col-2" class="mini-container-3" style="background-image:url('../../Handler/StoriesImageHandler.ashx?id={{story.id}}');background-size:cover;background-repeat:no-repeat">
+                    <div class="textTitle">
+                        <h3 style="height:100px;">{{story.title}}</h3>
+                        <span class="btnReadmore"><a>Read More >></a></span>
+                    </div>
+                </article>
+            </div>
+
+
+            

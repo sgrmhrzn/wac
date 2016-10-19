@@ -1,0 +1,83 @@
+﻿.content-heading-3 a{  clear:both;color: #097300;margin:auto;font-size:110%;text-align:center;text-decoration:none}
+         .content-heading-3 a:hover {  color: #F6931E;cursor:pointer;text-decoration:underline}
+
+#imgslider { 
+    margin: auto; 
+    width: 100%; 
+    margin-top:65px;
+    border-bottom:15px solid #3e9bd6; 
+}
+#imgslider div img{width:100%;}
+
+#imgslider > div {     position: absolute;width:100%;}
+#sliderBack{width:100%}
+#imgslider .title {position:absolute;right:0px;bottom:25px;padding:6px 40px 6px 20px;box-shadow:-1px 1px 3px #2B2B2B ; z-index:99;display:block;background-color:#097300;color:white;max-width:350px;width:100%}
+
+#mini-container-3{background-color: gray;margin:2%;height:220px;padding:0px;}
+
+.textTitle {visibility:hidden;}
+#mini-container-3:hover .textTitle{visibility:visible;opacity:0.7;background-color:black;color:white;height:100%;text-align:center}   
+#mini-container-3:hover .btnReadmore a{text-decoration:none;height:40px;background-color:#196798;padding:2% 7%;opacity:1;color:aliceblue}
+.btnReadmore a:hover { background-color:#196798;cursor:pointer}
+    container {
+        
+    }
+.readmore {text-align:center }
+.readmore a{  clear:both; color: #097300; width:10%;min-width:120px; margin:auto;font-size:110%;text-align:center;/* border: 1px solid #F6931E;*/}
+.readmore a:hover{/*background-color:#F6931E;*/color:#F6931E;cursor:pointer;text-decoration:underline}
+
+h2{padding:0 2%;} 
+.loading{background-image:url(../../../Images/loader.gif); background-size:100px;background-repeat:no-repeat;height: 100px;background-position: 50%;position: relative;padding: 5% 0%;}
+.view-all-box{display:inline-block;width:95%}
+.view-all-box a{padding:0 3%;border:thin solid orange;float:right;color:orangered;font-size:20px;}
+.view-all-box a:hover{background-color:orange;color:aliceblue}
+.inner-row-2{margin-bottom:2%}
+
+
+@media (min-width: 600px) {
+    #mini-container-3 img {
+        width: 35%;
+        max-width: 50%;
+    }
+
+    .mini-container-4 img {
+        width: 35%;
+        max-width: 40%;
+    }
+
+    #col-2 img {
+        width: 50%;
+        max-width: 50%;
+    }
+    .row-p{ width: 85%; margin: auto; font-size: 23px;text-align:center}
+    #title{min-width:400px;}
+#mini-container-3:hover .textTitle{padding:48px 15px 15px 15px;}   
+}
+
+
+
+@media (max-width: 600px) {
+    #mini-container-3 img {
+        width: 50%;
+        max-width: 30%;
+    }
+
+    .mini-container-4 img {
+        width: 25%;
+        max-width: 25%;
+    }
+
+    #col-2 img {
+        width: 50%;
+        max-width: 30%;
+    }
+
+    .row-p {
+        width: 85%;
+        margin: auto;
+        font-size: 20px;
+        text-align: center;
+    }
+    #title{min-width:210px;}
+    #mini-container-3:hover .textTitle{padding:40px 15px 15px 15px;}   
+}

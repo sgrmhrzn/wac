@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html ng-app="WACNepal">
+<head>
+    <meta charset="utf-8" />
+    <title>WACNepal</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link async href="../../../Content/home.css" rel="stylesheet" type="text/css" />
+    @Styles.RenderFormat(@"<link async href=""{0}"" rel='stylesheet'/>", "~/css/UIall")
+    @Scripts.RenderFormat(@"<script src=""{0}"" async></script>", "~/bundles/UI")
+    <link async href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <style>
+        #main-loader{position: absolute;padding: 15% 0%;height:800px; text-align: center;background-color:aliceblue;width: 100%;z-index:222; }
+    </style>
+</head>
+
+<body><div id="main-loader" ng-show="mainLoading"><img src="~/Images/loader.gif" style="width:10%;max-width:10%" /></div>
+    <section id="sideBar">
+        <div id="side" class="fb"></div>
+        <div id="side" class="twt"></div>
+        <div id="side" class="linkin"></div>
+    </section>
+    <div id="responsive-menu">
+
+        @Html.ActionLink("Home", "Index", "Home")
+        <article class="dropdown">
+            @Html.ActionLink("WHO WE ARE", null, null, new { @class = "dropBtn" })
+            <article class="dropdown-content">
+                @Html.ActionLink("Profile", "Index", "About")
+                @Html.ActionLink("Our Team", "Index", "About")
+                @Html.ActionLink("Projects", "Index", "projects")
+                @Html.ActionLink("Success Stories", "Index", "Success")
+            </article>
+        </article>
+
+        @Html.ActionLink("Updates", "Index", "Updates")
+        @Html.ActionLink("Downloads", "Index", "Downloads")
+        @Html.ActionLink("Contact", "Index", "Contact")
+
+    </div>
+    <header>
+        <nav>
+            <section class="row-1"><div class="inner-menu">@*LANGUAGE*@</div></section>
+            <ul id="static-menu">
+                <li class="dropdown">
+                    <a class="dropBtn">WHO WE ARE</a>
+
+                    <article class="dropdown-content" style="right:-15px;">
+                        <span id="triangle-up"></span>
+                        @Html.ActionLink("Profile", "Index", "About")
+                        @Html.ActionLink("Our Team", "OurTeam", "About")
+                    </article>
+                </li>
+                <li><a>HOW WE WORK</a></li>
+
+                <a href="/"><article id="logo"><img src="/Images/logo1.png" width="100%" style="margin: 4px auto auto auto;" /></article></a>
+                <li class="dropdown">
+                    <a>WHAT WE DO</a>
+                    <article class="dropdown-content" style="right:-15px;">
+                        <span id="triangle-up"></span>
+                        @Html.ActionLink("News", "Index", "projects")
+                        @Html.ActionLink("Projects", "Index", "projects")
+                        @Html.ActionLink("Success Stories", "Index", "Stories")
+                    </article>
+                </li>
+
+                <li>@Html.ActionLink("CONTACT US", "Index", "Contact")</li>
+
+            </ul>
+
+
+            <span id="menuIcon"><img src="../../Images/menu.png" height="40px;"></span>
+        </nav>
+
+    </header>
+
+    @RenderBody()
+    <div class="main-content" ng-view></div>
+    <footer>
+        <div id="triangle-up-bg"></div>
+        <div style="background-color:#0f202f">
+            <container class="row">
+
+                <section id="footer-triangle">
+                    <div style="padding:5%">
+
+                        <article class="col-4 col-m-10" id="footer_menu">
+
+                            @Html.ActionLink("Our Team", "OurTeam", "About")
+                            @Html.ActionLink("Organization Profile", "Index", "About")
+                            @Html.ActionLink("Success Stories", "Index", "Success")
+                            @Html.ActionLink("Contact", "Index", "Contact")
+                        </article>
+
+                        <article class="col-5 col-m-5" id="footer_menu" style="color:aliceblue">
+                            <div>©2016 |  WAC Nepal  <br />  Achham, Nepal <br /> 01-4424179, 01-4424199 <br /> info@wacnepalachham.org.np  </div>
+                        </article>
+                        <article class="col-5 col-m-6" id="footer_menu" style="position:absolute;right:-600px">
+                            <ul id="foot-networking-icon">
+                                Connect With Us
+                                <li><div id="side" class="fb"></div></li>
+                                <li><div id="side" class="twt"></div></li>
+                                <li><div id="side" class="linkin"></div></li>
+                            </ul>
+                        </article>
+                    </div>
+
+
+                </section>
+
+
+
+            </container>
+        </div>
+
+        <section class="row-4" id="bottom-footer" style="height:50px;border-top: 0.1em solid #757575;color:#0f202f;font-weight:bold">
+           Design & Develop By<a href="http://www.pritisharma.com.np" target="_blank">Priti & <a href="http://www.sagarmaharjan.com.np" target="_blank">Sagar</a></a><span style="float:right">Powered by: Sristy-ive </span>
+        </section>
+    </footer>
+</body>
+
+
+
+
+
+</html>

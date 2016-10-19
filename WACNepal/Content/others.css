@@ -1,0 +1,42 @@
+﻿.validation-summary-errors, .field-validation-error{
+    color:red;
+    font-style:italic;
+   
+}
+.validation-summary-errors li{
+     list-style:none;
+}
+
+fieldset{
+        border: solid thin lightgrey;
+    background: whitesmoke;
+
+}
+ #password, .single-line{
+     max-width:400px;
+     width:100%;
+     height:25px;
+ }
+    .multi-line
+    {
+        width:100%;
+        height:100px;
+    }
+    .editor-field{
+        padding:0px 10px 25px 10px ;
+    }
+    .editor-label{
+        padding:10px 10px 0px 10px 
+    }
+
+    .btn-success {color: white; border: none; width: 90px;cursor: pointer;margin: 5px;
+    background-color: #337AB7;
+    border-radius: 5px;
+    text-decoration:none;
+    /*padding: 3px 15px 3px 15px;*/
+    font-size:initial;
+    text-align:center;
+    padding: 8px;
+    display:block;
+}
+.btn-success:hover {    opacity: 0.8; }
