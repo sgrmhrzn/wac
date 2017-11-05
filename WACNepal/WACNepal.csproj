@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +47,12 @@
     <Reference Include="AutoMapper.Net4, Version=3.3.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Heroic.AutoMapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -152,12 +159,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -206,14 +207,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CPanelNewsController.cs" />
-    <Compile Include="Controllers\CPanelStoriesController.cs" />
     <Compile Include="Controllers\CPanelController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\projectImageApiController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\StoriesController.cs" />
+    <Compile Include="Core\Gallery.cs" />
     <Compile Include="Core\GZipOrDeflate.cs" />
     <Compile Include="Core\bas64ToByte.cs" />
     <Compile Include="Core\imageResize.cs" />
@@ -224,6 +225,12 @@
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\galleryImageHandler.ashx.cs">
+      <DependentUpon>galleryImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\galleryThumbnailHandler.ashx.cs">
+      <DependentUpon>galleryThumbnailHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\ProjectThumbnailHandler.ashx.cs">
       <DependentUpon>ProjectThumbnailHandler.ashx</DependentUpon>
@@ -259,6 +266,8 @@
     <Content Include="Content\Backend.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootTable.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\header.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\image-crop-styles.css" />
@@ -321,10 +330,19 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\font-awesome\font-awesome.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\areaOfInterventions.jpg" />
     <Content Include="Images\banner-csr-bg.jpg" />
+    <Content Include="Images\capacity.png" />
+    <Content Include="Images\disaster.png" />
+    <Content Include="Images\education.png" />
+    <Content Include="Images\health.png" />
+    <Content Include="Images\IMG.JPG" />
+    <Content Include="Images\livelihood.png" />
     <Content Include="Images\loader.gif" />
     <Content Include="Images\logo1.png" />
     <Content Include="Images\menu.png" />
@@ -332,6 +350,7 @@
     <Content Include="Images\scroll.png" />
     <Content Include="Images\social.png" />
     <Content Include="Images\sristyive.png" />
+    <Content Include="Images\team.jpg" />
     <Content Include="Images\top.png" />
     <Content Include="Images\sliderBorder.png" />
     <Content Include="js\angular-animate.js" />
@@ -343,17 +362,40 @@
     <Content Include="Scripts\AngularJs\angular-route.min.js" />
     <Content Include="Scripts\AngularJs\angular-sanitize.js" />
     <Content Include="Scripts\AngularJs\angular-sanitize.min.js" />
+    <Content Include="Scripts\AngularJs\angular-ui-route.js" />
     <Content Include="Scripts\AngularJs\angular.min.js" />
+    <Content Include="Scripts\Application\Controllers\galleryCtrl.js" />
     <Content Include="Scripts\Application\Controllers\imgCropperCntrl.js" />
     <Content Include="Scripts\Application\Controllers\newsController.js" />
     <Content Include="Scripts\Application\Controllers\successStoriesController.js" />
+    <Content Include="Scripts\Application\Modules\gallery.js" />
     <Content Include="Scripts\Application\Modules\image-crop.js" />
     <Content Include="Scripts\Application\Modules\news.js" />
     <Content Include="Scripts\Application\Modules\successStories.js" />
+    <Content Include="Scripts\Application\Services\galleryEntity.js" />
     <Content Include="Scripts\Application\Services\newsEntity.js" />
     <Content Include="Scripts\Application\Services\storiesEntity.js" />
+    <Content Include="Handler\galleryThumbnailHandler.ashx" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Handler\galleryImageHandler.ashx" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.12.2.min.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery.cropit.js" />
+    <Content Include="Scripts\lighbox\css\lightbox.css" />
+    <Content Include="Scripts\lighbox\images\close.png" />
+    <Content Include="Scripts\lighbox\images\loading.gif" />
+    <Content Include="Scripts\lighbox\images\next.png" />
+    <Content Include="Scripts\lighbox\images\prev.png" />
+    <Content Include="Scripts\lighbox\js\lightbox.js" />
+    <Content Include="Scripts\modelJs.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
@@ -434,6 +476,8 @@
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\UI\gallery\galleryController.js" />
+    <Content Include="Scripts\UI\gallery\galleryService.js" />
     <Content Include="Scripts\UI\news\newsService.js" />
     <Content Include="Scripts\UI\home\HomeController.js" />
     <Content Include="Scripts\UI\home\HomeService.js" />
@@ -468,6 +512,7 @@
     <Content Include="Handler\NewsThumbnailHandler.ashx" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <Content Include="Scripts\CustomJS\custom.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -476,14 +521,30 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Templates\CPanel\gallery.html" />
     <Content Include="Templates\CPanel\Index.html" />
+    <Content Include="Templates\CPanel\login.html" />
     <Content Include="Templates\CPanel\News.html" />
     <Content Include="Templates\CPanel\success.html" />
+    <Content Include="Templates\Frontend\About\network.html" />
+    <Content Include="Templates\Frontend\About\ourTeam.html" />
+    <Content Include="Templates\Frontend\About\profile.html" />
+    <Content Include="Templates\Frontend\About\projectSummary.html" />
+    <Content Include="Templates\Frontend\Contact\Index.html" />
+    <Content Include="Templates\Frontend\gallery\Detail.html" />
+    <Content Include="Templates\Frontend\gallery\Index.html" />
+    <Content Include="Templates\Frontend\Home\Contact.html" />
     <Content Include="Templates\Frontend\News\Detail.html" />
     <Content Include="Templates\Frontend\News\Index.html" />
+    <Content Include="Templates\Frontend\News\noticeCareer.html" />
+    <Content Include="Templates\Frontend\ourApproach\workingArea.html" />
+    <Content Include="Templates\Frontend\Projects\Index.html" />
     <Content Include="Templates\Frontend\Projects\Ongoing.html" />
     <Content Include="Templates\Frontend\Projects\Completed.html" />
+    <Content Include="Templates\Frontend\Stories\Detail.html" />
     <Content Include="Templates\Frontend\Stories\Index.html" />
+    <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -496,7 +557,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Templates\Frontend\Home\Index.html" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -537,12 +597,14 @@
     <Content Include="Views\CPanelNews\Index.cshtml" />
     <Content Include="Views\CPanelNews\_ViewStart.cshtml" />
     <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\CPanel\success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
     <Folder Include="Scripts\Application\Directives\" />
     <Folder Include="Templates\CPanel\SuccessStories\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

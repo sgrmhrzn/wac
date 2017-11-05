@@ -23,10 +23,10 @@
                 <article ng-repeat="story in stories" id="mini-container-3" class="col-14 col-m-8" style="background-image:url('../../Handler/StoriesThumbnailHandler.ashx?id={{story.id}}');background-size:cover;background-repeat:no-repeat">
                     <div class="textTitle">
                         <h3 style="height:100px;">{{story.title}}</h3>
-                        <span class="btnReadmore"><a>Read More >></a></span>
+                        <span class="btnReadmore"><a ui-sref="stories.detail({id: story.id})">Read More >></a></span>
                     </div>
                 </article>
-                <div class="view-all-box"><a href="/Stories/">VIEW ALL</a></div>
+                <div class="view-all-box"><a ui-sref="stories">VIEW ALL</a></div>
 
             </div>
 
@@ -38,10 +38,10 @@
                 <article ng-repeat="project in ongoingProjects" id="mini-container-3" class="col-14 col-m-8" style="background-image:url('../../Handler/ProjectThumbnailHandler.ashx?id={{project.id}}');background-size:cover;background-repeat:no-repeat">
                     <div class="textTitle">
                         <h3 style="height:100px;">{{project.title}}</h3>
-                        <span class="btnReadmore"><a href="Projects/Detail/{{project.id}}" ng-click="getProjectById(project)">Read More >></a></span>
+                        <span class="btnReadmore"><a ui-sref="projects.detail({id: project.id})">Read More >></a></span>
                     </div>
                 </article>
-                <div class="view-all-box"><a href="Projects/Ongoing/">VIEW ALL</a></div>
+                <div class="view-all-box"><a ui-sref="projects.ongoing">VIEW ALL</a></div>
 
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <div style="width: 100%;background-color: #3e9bd6;text-align: center;color:aliceblue;font-size:22px;">Recent </div>
                 </article>
                 <div ng-repeat="news in homeNews">
-                    <a href="news/Detail/{{news.id}}" ng-click="getNewsById(news)" class="recentNews">
+                    <a ui-sref="news.detail({id:news.id})" class="recentNews">
                         {{news.title}}
                     </a>
                 </div>
@@ -76,26 +76,53 @@
             <article ng-repeat="project in completedProjects" id="mini-container-3" class="col-13 col-m-8" style="background-image:url('../../Handler/ProjectThumbnailHandler.ashx?id={{project.id}}');background-size:cover">
                 <div class="textTitle">
                     <h3 style="height:100px;">{{project.title}}</h3>
-                    <span class="btnReadmore"><a href="Projects/Detail/{{project.id}}" ng-click="getProjectById(project)">Read More >></a></span>
+                    <span class="btnReadmore"><a ui-sref="projects.detail({id: project.id})">Read More >></a></span>
                 </div>
             </article>
-            <div class="view-all-box"><a href="Projects/Completed/">VIEW ALL</a></div>
+            <div class="view-all-box"><a ui-sref="projects.completed">VIEW ALL</a></div>
         </section>
     </section>
 </container>
 
 
 
+<section class="row-1" style="min-height:250px;border-top: thin solid #cecece">
+    
+    <div style="text-align:center;margin:3% 0" class="col-4 col-m-9">
+        <article id="title-box" class="title-centre">
+            <div id="triangle-topright"></div>
+            <div id="title" style="min-width:200px">Vision</div>
+            <div id="triangle-topleft"></div>
+        </article><p class="row-p" style="text-decoration:solid"><strong>"Formation of fulfilled society is the interest/ needs of WAC-Nepal"</strong></p>
+    </div>
+    <div style="text-align:center;margin:3% 0" class="col-4 col-m-9">
+        <article id="title-box" class="title-centre">
+            <div id="triangle-topright"></div>
+            <div id="title" style="min-width:200px">Mission</div>
+            <div id="triangle-topleft"></div>
+        </article>
+
+        <p class="row-p" style="text-decoration:solid"><strong>To brings fulfillments in target groups through social transformation.</strong></p>
+    </div>
+    <div style="text-align:center;margin:3% 0" class="col-4 col-m-9">
+        <article id="title-box" class="title-centre">
+            <div id="triangle-topright"></div>
+            <div id="title" style="min-width:200px">Objectives</div>
+            <div id="triangle-topleft"></div>
+        </article>
+    <p class="row-p" style="text-decoration:solid"><strong>To develop subject-specific manpower for the organizational development.</strong></p>
+    </div>
+
+</section>
 <section class="row-1" style="min-height:250px;border-top: thin solid #cecece ">
-    <article id="title-box" class="title-centre" >
-        <div id="triangle-topright"></div>
-        <div id="title" style="min-width:200px">Our Goal</div>
+    <article id="title-box" class="title-centre">
+        <div id="title" style="min-width:200px">Goal</div>
         <div id="triangle-topleft"></div>
     </article>
     <div style="text-align:center;margin:3% 0"><p class="row-p" style="text-decoration:solid"><strong>To bring improvement in the stages and the area of capacity building of target groups by improving sustainable livelihood, health and long- lives, disaster management, good governance and security or organizational development.</strong></p></div>
 
 </section>
 
-<section style="min-height:300px;width: 100%;box-shadow: 0px 1px 5px #929a9e;background-color:aliceblue">
+<!--<section style="min-height:300px;width: 100%;box-shadow: 0px 1px 5px #929a9e;background-color:aliceblue">
 
-</section>
+</section>-->

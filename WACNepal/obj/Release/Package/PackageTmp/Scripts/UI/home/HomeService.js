@@ -1,14 +1,14 @@
 ﻿app.service("homeService", function ($http) {
-    var ProjectObject = {};
+    var transferedObject = {};
     var action = '';
 
-    this.addProjectObject = function (newObj) {
-        ProjectObject = newObj;
+    this.addHomeObject = function (newObj) {
+        transferedObject = newObj;
     };
 
     //Send object to detail controller
-    this.getProjectObject = function () {
-        return ProjectObject;
+    this.getHomeObject = function () {
+        return transferedObject;
     };
 
     this.getAction = function () {
@@ -49,6 +49,23 @@
             url: "/Home/getStoryById",
             params: {
                 id: JSON.stringify(stryID)
+            }
+        });
+        return response;
+    }
+
+    // get all News
+    this.getAllNews = function () {
+        return $http.get("/Home/getAllNews")
+    }
+
+    // get News by id
+    this.getNewsById = function (ID) {
+        var response = $http({
+            method: "post",
+            url: "/Home/getNewsById",
+            params: {
+                id: JSON.stringify(ID)
             }
         });
         return response;

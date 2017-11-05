@@ -1,5 +1,6 @@
-﻿app.controller("homeController", function ($scope, $http, homeService, $location, $routeParams) {
+﻿app.controller("homeController", function ($scope, $http, homeService, $location, ProjectService, StoriesService, $window) {
     $scope.mainLoading = true;
+    $window.scrollTo(0, 0);
     getAllStories();
     getOnGoingProjects();
     getCompletedProjects();
@@ -9,7 +10,7 @@
     //To Get All ongoing Projects 
     function getOnGoingProjects() {
         $scope.loading = true;
-        var getData = homeService.getOnGoingProjects();
+        var getData = ProjectService.getOnGoingProjects(0,2);
         getData.then(function (prj) {
             
             $scope.ongoingProjects = prj.data;
@@ -22,7 +23,7 @@
     //To Get All completed Projects 
     function getCompletedProjects() {
         $scope.loading = true;
-        var getData = homeService.getCompletedProjects();
+        var getData = ProjectService.getCompletedProjects(0,3);
         getData.then(function (prj) {
             $scope.completedProjects = prj.data;
             $scope.loading = false;
@@ -43,7 +44,7 @@
     //To Get All Stories  
     function getAllStories() {
         $scope.loading = true;
-        var getData = homeService.getAllStories();
+        var getData = StoriesService.getAllStories(0,2);
         getData.then(function (stry) {
             $scope.stories = stry.data;
             $scope.loading = false;

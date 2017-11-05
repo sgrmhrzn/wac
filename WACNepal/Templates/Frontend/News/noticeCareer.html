@@ -1,0 +1,50 @@
+﻿<style>    .image {
+        width: 150px;
+        height: 100px;
+        float: left;
+        margin:0 3% 0 0;
+    }
+    .defaultImage{
+        background-image:url('../../../Images/logo1.png');
+        border:thin solid #b7b7b7;;
+        background-repeat:no-repeat;
+        background-position-x:25px;
+    }
+    .col-6, .col-m-6{padding:0px}
+    .news{height:120px;margin:3%;border-bottom:thin solid gray}
+</style>
+<container style="min-height:950px;">
+    <section class="row" style="margin:5% auto;min-height:400px;border-top: thin solid #cecece ">
+        <section ng-controller="noticeCtrl" class="col-7 col-m-6">
+            <article id="title-box">
+                <div id="title">Notice</div>
+                <div id="triangle-topleft"></div>
+            </article>
+            <article class="news" ng-repeat="notice in allNotice">
+                <div ng-if="notice.image != ('' || null)"><img src="../../../Handler/NewsThumbnailHandler.ashx?id={{notice.id}}" class="image" /></div>
+                <div ng-if="notice.image == ('' || null)"><div class="defaultImage image" /></div>
+                <a ui-sref="news.detail({id: notice.id})">{{notice.title}}</a>
+                <div>{{notice.date}}</div>
+            </article>
+            <div ng-show="loading" class="loading"></div>
+            <div class="row" style="text-align:center"><span class="loadMore" ng-click="getAllNotice()"><a>Load More <i class="fa fa-chevron-down"></i></a> </span> <!--<span ng-show="spinner"><i class="fa fa-spinner"></i></span>--></div>
+        </section>
+
+        <section ng-controller="careerCtrl" class="col-5 col-m-6">
+            <article id="title-box">
+                <div id="title">Vacancy</div>
+                <div id="triangle-topleft"></div>
+            </article>
+            <article class="news" ng-repeat="career in allCareer">
+                <div ng-if="career.image != ('' || null)"><img src="../../../Handler/NewsThumbnailHandler.ashx?id={{career.id}}" class="image" /></div>
+                <div ng-if="career.image == ('' || null)"><div class="defaultImage image" /></div>
+                <a ui-sref="news.detail({id: career.id})">{{career.title}}</a>
+                <div>{{career.date}}</div>
+            </article>
+            <div ng-show="loading" class="loading"></div>
+            <div class="row" style="text-align:center"><span class="loadMore" ng-click="getAllCareer()"><a>Load More <i class="fa fa-chevron-down"></i></a> </span> <!--<span ng-show="spinner"><i class="fa fa-spinner"></i></span>--></div>
+        </section>
+
+    </section>
+</container>
+

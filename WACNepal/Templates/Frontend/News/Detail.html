@@ -1,14 +1,14 @@
 ﻿
-<container ng-controller="newsDetailCntrl" >
-    <section class="row" style="padding-top:25px;margin:2%;">
+<container >
+    <section class="row">
         <div class="col-8 col-m-12 ">
-            <div ng-show="loading" class="loading"><h1>LOADING...</h1></div>
+            <div ng-show="loading" class="loading"></div>
             <article style="width:100%;border: thin solid #c1c1c1;box-shadow: 1px 1px 10px #c1c1c1;min-height:700px">
 
-                <div ng-show="newsImage"><img src="../../../Handler/NewsImageHandler.ashx?id={{transferedObject.id}}" style="width:100%;height:auto;float:left" /></div>
+                <div><img src="../../../Handler/NewsImageHandler.ashx?id={{transferedObject.id}}" style="width:100%;height:auto;float:left" /></div>
                 <article style="margin:3%;display:inline-block;text-align:justify;width:94%">
                     <h1>{{transferedObject.title}}</h1>
-                    <p>{{transferedObject.detail | htmlToPlaintext}}</p>
+                    <div ng-bind-html ="transferedObject.detail"></div>
                     <br />
                     <!--<b>Project Duration: </b> {{ProjectObject.duration}}<br>-->
                     <!--<b>Project Category: </b>{{ProjectObject.category}}<br><br>-->

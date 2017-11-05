@@ -50,11 +50,18 @@
                    }
                    
                    //get All Eployee
-                   var getModel = function (url) {
-
-                       return $http.get(url);
+                   var getModel = function (url, skip, take, type) {
+                       var response = $http({
+                           method: "get",
+                           url: url,
+                           params: {
+                               skipNo: skip,
+                               takeNo: take,
+                               type: type
+                           }
+                       });
+                       return response;
                    };
-
                    // get Employee By Id
                    var getNewsById = function (id, url) {
                        var response = $http({

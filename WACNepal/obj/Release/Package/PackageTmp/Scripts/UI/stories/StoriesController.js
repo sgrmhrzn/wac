@@ -1,26 +1,38 @@
-﻿app.controller("StoriesController", function ($scope, $http, StoriesService) {
-    getAllStories();
-    $scope.tabTitle = 'Success Stories';
+﻿app.controller("StoriesController", function ($scope, $http, StoriesService, $window) {
+    $window.scrollTo(0, 0);
+    var skip = 0;
+    var take = 6;
+    $scope.stories = [];
+    getAllStories(skip, take);
+    $scope.getStories = function () {
+        skip = skip + 6;
+        take = take + 6;
+        getAllStories(skip, take);
+    }
+
     //To Get All Records  
-    function getAllStories() {
+    function getAllStories(skipValue, takeValue) {
         $scope.loading = true;
-        var getData = StoriesService.getAllStories();
+        var getData = StoriesService.getAllStories(skipValue, takeValue);
         getData.then(function (stry) {
-            $scope.stories = stry.data;
+            angular.forEach(stry.data, function (value, key) {
+                $scope.stories.push(value);
+            })
             $scope.loading = false;
         },function () {
             console.log('Error in getting records');
         });
     }
-
-    $scope.getStoryById = function getStoryById(id) {
+});
+app.controller("StoryDetailController", function ($scope, $http, StoriesService, $stateParams, $window) {
+    $window.scrollTo(0, 0);
+    getStoryById();
+    function getStoryById() {
         $scope.loading = true;
-        var getData = StoriesService.getStory(id);
+        var getData = StoriesService.getStory($stateParams.id);
         getData.then(function (stry) {
             $scope.story = stry.data;
             $scope.loading = false;
-            console.log(story.id, story.title);
-
         }, function () {
             alert('Error in getting records');
         });

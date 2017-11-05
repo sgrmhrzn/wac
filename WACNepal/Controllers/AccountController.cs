@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using WACNepal.Models;
+using static System.Net.Mime.MediaTypeNames;
+using System.Configuration;
 
 namespace WACNepal.Controllers
 {
@@ -55,24 +57,33 @@ namespace WACNepal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
-            {
-                var user = await UserManager.FindAsync(model.Email, model.Password);
-                if (user != null)
-                {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
-            }
+            //var user = await UserManager.FindAsync(model.Email, model.Password);
+            var userEmail = ConfigurationManager.AppSettings["UserEmail"];
+            var password = ConfigurationManager.AppSettings["Password"];
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            if (model.Email == userEmail && model.Password == password)
+            {
+                Session["isLoggedIn"] = "LoggedIn";
+                return RedirectToAction("Index", "CPanel");
+            }
+            else
+            {
+                 ModelState.AddModelError("", "Invalid username or password.");
+                return RedirectToAction("Index", "CPanel");
+            }
         }
 
+        isLoggedInModel logg = new isLoggedInModel();
+        public void SetLoggedIn(bool value)
+        {
+            
+            logg.isLoggedIn = value;
+        }
+
+        public bool getSetLoggedIn()
+        {
+            return logg.isLoggedIn;
+        }
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -432,12 +443,12 @@ namespace WACNepal.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            //AuthenticationManager.SignOut();
+            Session["isLoggedIn"] = "";
+            return RedirectToAction("Index", "CPanel");
         }
 
         //

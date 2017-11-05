@@ -1,0 +1,31 @@
+﻿
+<container >
+    <section class="row">
+        <div class="col-8 col-m-12 ">
+            <div ng-show="loading" class="loading"></div>
+            <article style="width:100%;border: thin solid #c1c1c1;box-shadow: 1px 1px 10px #c1c1c1;min-height:700px">
+
+                <div><img src="../../../Handler/NewsImageHandler.ashx?id={{transferedObject.id}}" style="width:100%;height:auto;float:left" /></div>
+                <article style="margin:3%;display:inline-block;text-align:justify;width:94%">
+                    <h1>{{transferedObject.title}}</h1>
+                    <div ng-bind-html ="transferedObject.detail"></div>
+                    <br />
+                    <!--<b>Project Duration: </b> {{ProjectObject.duration}}<br>-->
+                    <!--<b>Project Category: </b>{{ProjectObject.category}}<br><br>-->
+                    <div style="float:right"><b>Posted Date: </b>{{transferedObject.posted_date.slice(6,-2) |  date:'yyyy-MM-dd'}}</div>
+                </article>
+            </article>
+        </div>
+
+
+
+        <div class="col-4 col-m-12">
+            <aside>
+                <article id="title-box">
+                    <!--<div id="title" style="min-width:235px">Recent </div>-->
+                </article>
+
+            </aside>
+        </div>
+    </section>
+</container>

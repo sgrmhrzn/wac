@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="ProjectController">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <h1> Employee Details Page</h1>
+
+    <br />
+    <input id="imgInp" type="file" aria-label="Add photos to your post" class="upload" name="file" onchange="angular.element(this).scope().LoadFileData(this.files)" multiple="" accept="image/*" >
+    <input type="button" ng-click="submit()" />
+    <input type="button" class="btnAdd" value=" Add Project" ng-click="AddProjectDiv()" />
+    <input type="text" ng-model="searchText" />
+    <div class="divList">
+        <p class="divHead">Employee List</p>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Name</b></td>
+                <td><b>Email</b></td>
+                <td><b>Age</b></td>
+                <td><b>Actions</b></td>
+            </tr>
+            <tr ng-repeat="project in projects">
+                <td>
+                    {{project.program_title}}
+                </td>
+                <td>
+                    {{project.description}}
+                </td>
+                <td>
+                    {{project.duration}}
+                </td>
+                <td>
+                    {{project.category}}
+                </td>
+                <td>
+                    {{project.posted_date.slice(6,-2) |  date:'yyyy-MM-dd'}}
+                </td>
+                <td>
+                    {{project.image}}
+                </td>
+                <td>
+                    {{project.ytubeLink}}
+                </td>
+                <td>
+                    {{project.project_status}}
+                </td>
+                <td>
+                    <span ng-click="editProject(project)" class="btnAdd">Edit</span>
+                    <span ng-click="deleteEmployee(employee)" class="btnRed">Delete</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    
+
+    <div ng-show="divProject" style="position: absolute;margin: 10% 20%;top: 0px;background-color: aliceblue;border: thin solid gray; width: 800px;padding: 5%;">
+        <p class="divHead">{{Action}} Employee</p>
+        <form name="form" id="form" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td><b>Id</b></td>
+                    <td>
+                        <input type="text" disabled="disabled" ng-model="projectId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Title</b></td>
+                    <td>
+                        <input type="text" ng-model="programTitle" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Description</b></td>
+                    <td>
+                        <input type="text" ng-model="projectDetail" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Category</b></td>
+                    <td>
+                        <input type="text" ng-model="category" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><b>Duration</b></td>
+                    <td>
+                        <input type="text" ng-model="duration" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Project Image</b></td>
+                    <td>
+                        <input id="imgInp" type="file" aria-label="Add photos to your post" class="upload" name="file" onchange="angular.element(this).scope().LoadFileData(this.files)" accept="image/*" ng-model="files">
+
+                        <input type="button" ng-click="submit()" value="Upload" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Youtube Link</b></td>
+                    <td>
+                        <input type="text" ng-model="ytubeLink" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Project Status</b></td>
+                    <td>
+                        <input type="text" ng-model="projectStatus" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" class="btnAdd" value="Save" ng-click="AddUpdateProject(files)" />
+                        <input type="button" value="Cancel" ng-click="divProject = !divProject" class="btn" />
+                        <!--ADD A PROGRESS BAR ELEMENT.-->
+                        <p><progress id="pro" value="0"></progress></p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div>
+            <span ng-show="!files.length">No files selected</span>
+            <ul>
+                <li ng-repeat="file in files">{{file}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

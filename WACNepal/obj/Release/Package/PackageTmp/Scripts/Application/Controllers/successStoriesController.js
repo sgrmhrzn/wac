@@ -3,15 +3,26 @@
     angular.module("application")
            .controller("StoriesCntrl", ["$scope", "storiesEntityService",
                function ($scope, storiesEntityService) {
-                   $scope.divAdd = false;
-                   GetAll();
+                   var skip = 0;
+                   var take = 6;
+                   $scope.stories = [];
 
+                   GetAll(skip, take);
+                   //getByID();
+                   $scope.GetAll = function () {
+                       // $scope.spinner = true;
+                       skip = skip + 6;
+                       take = take + 6;
+                       GetAll(skip, take);
+                   }
                    //To Get All Records  
-                   function GetAll() {
+                   function GetAll(skipValue, takeValue) {
                        $scope.loading = true;
-                       var getData = storiesEntityService.getRecords();
-                       getData.then(function (stry) {
-                           $scope.stories = stry.data;
+                       var getData = storiesEntityService.getRecords(skipValue, takeValue);
+                       getData.then(function (nws) {
+                           angular.forEach(nws.data, function (value, index) {
+                               $scope.stories.push(value);
+                           });
                            $scope.loading = false;
                        }, function () {
                            alert('Error in getting records');
@@ -20,7 +31,6 @@
 
                    //get record by id
                    $scope.editRecord = function (story) {
-                       debugger;
                        $scope.loading = true;
                        var getData = storiesEntityService.getRecord(story.id);
                        getData.then(function (stry) {
@@ -37,11 +47,14 @@
                        },
                        function () {
                            alert('Error in getting records');
+                           $scope.loading = false;
                        });
                    }
 
                    //update record 
                    $scope.AddUpdateRecord = function (story) {
+                       $scope.stories = [];
+                       $scope.loading = true;
                        var getAction = $scope.Action;
                        if ($scope.result != null) {
                            story.base64 = $scope.result;
@@ -55,48 +68,40 @@
                            var id = $scope.stories.id;
                            var getData = storiesEntityService.updateTutorial(id, story);
                            getData.then(function (data) {
-                               GetAll();
-                               console.log(data);
-                               //alert(msg.data);
-                               $scope.divAdd = false;
+                               GetAll(0,6);
+                               alert(data);
+                               $scope.loading = false;
                            }, function () {
                                alert('Error in updating record');
+                               $scope.loading = false;
                            });
                        }
                        else {
                            var getData = storiesEntityService.saveTutorial(story);
                            getData.then(function (data) {
-                               GetAll();
-                               console.log(data);
-                               //alert(msg.data);
-                               $scope.divAdd = false;
+                               GetAll(0,6);
+                               alert(data);
+                               $scope.loading = false;
                            }, function () {
                                alert('Error in adding record');
+                               $scope.loading = false;
                            });
                        }
-                       debugger;
-                       GetAll();
-                       //$scope.refresh();
                    }
 
-                   $scope.deleteRecord = function (story) {
-                       var getData = storiesEntityService.deleteRecord(story);
+                   $scope.deleteRecord = function (id) {
+                       var getData = storiesEntityService.deleteRecord(id);
                        getData.then(function (data) {
-                           GetAll();
-                           console.log(data);
-                           alert(msg.data);
-                           $scope.divAdd = false;
+                           alert(data);
+                           $scope.stories = [];
+                           GetAll(0, 6);
                        }, function () {
                            alert('Error in adding record');
                        });
                    }
 
-                   $scope.AddDiv = function () {
-                       ClearFields();
+                   $scope.ClearFields = function () {
                        $scope.Action = "Add";
-                       $scope.divAdd = true;
-                   }
-                   function ClearFields() {
                        $scope.story={
                            id: "",
                            title: "",

@@ -1,31 +1,43 @@
-﻿app.controller("ProjectController", function ($scope, $http, ProjectService, $location, $routeParams, $window) {
+﻿app.controller("ProjectController", function ($scope, $http, ProjectService, $location, $stateParams,  $window, $state) {
     $window.scrollTo(0, 0);
+    var skip = 0;
+    var take = 6;
+    $scope.ongoingProjects = [];
+    $scope.completedProjects = [];
+    $state.current.name == "projects.ongoing" ? getOnGoingProjects(skip, take) : getCompletedProjects(skip, take);
     $scope.mainLoading = true;
-    getOnGoingProjects();
-    getCompletedProjects();
+    
+    
     //getByID();
-    $scope.mainLoading = false;
+    $scope.getProjects = function () {
+        $scope.spinner = true;
+        skip = skip + 6;
+        take = take + 6;
+        $state.current.name == "projects.ongoing" ? getOnGoingProjects(skip, take) : getCompletedProjects(skip, take);
+    }
 
-    function getOnGoingProjects() {
+    function getOnGoingProjects(skipValue,takeValue) {
         $scope.loading = true;
-        var getData = ProjectService.getOnGoingProjects();
+        var getData = ProjectService.getOnGoingProjects(skipValue, takeValue);
         getData.then(function (prj) {
-            
-            $scope.ongoingProjects = prj.data;
-
+            angular.forEach(prj.data, function (value, key) {
+                $scope.ongoingProjects.push(value);
+            })
+            $scope.loading = false;
         }, function () {
             console.log('Error in getting records');
         });
     }
 
     //To Get All Records  
-    function getCompletedProjects() {
+    function getCompletedProjects(skipValue, takeValue) {
         $scope.loading = true;
-        var getData = ProjectService.getCompletedProjects();
+        var getData = ProjectService.getCompletedProjects(skipValue, takeValue);
         getData.then(function (prj) {
-            $scope.completedProjects = prj.data;
+            angular.forEach(prj.data, function (value, key) {
+                $scope.completedProjects.push(value);
+            })
             $scope.loading = false;
-
         },function () {
             console.log('Error in getting records');
         });
@@ -36,19 +48,24 @@
         var obj = ProjectService.addProjectObject(projects);
     }
 });
-app.controller("detailCntrl", function ($scope, $http, ProjectService, homeService, $location, $routeParams, $window) {
+app.controller("detailCntrl", function ($scope, $http, ProjectService, homeService, $location, $stateParams, $window) {
     $window.scrollTo(0, 0);
     $scope.mainLoading = true;
-    var ProjectObject2=[];
-    $scope.action = ProjectService.getAction();
-    if ($scope.action == 'ProjectsPage') {
-        $scope.transferedObject = ProjectService.getProjectObject();
-        ProjectObject2.push($scope.transferedObject);
-        //console.log(ProjectObject2);
+    getSingleData();
+
+    function getSingleData() {
+        $scope.loading = true;
+
+        var getData = ProjectService.getProject($stateParams.id);
+        getData.then(function (prj) {
+            $scope.transferedObject = prj.data;
+            console.log($scope.transferedObject);
+
+            $scope.loading = false;
+        }, function () {
+            console.log('Error in getting records');
+        });
     }
-    else if ($scope.action == '') {
-        $scope.transferedObject = homeService.getHomeObject();
-        //console.log($scope.ProjectObject, $scope.ProjectObject.title);
-    }
+
     $scope.mainLoading = false;
 });

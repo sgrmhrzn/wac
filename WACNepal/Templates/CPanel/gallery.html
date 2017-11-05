@@ -1,0 +1,128 @@
+﻿<div ng-show="loading" class="loading-outer"><div class="loading"><h1>LOADING...</h1></div></div>
+<div class="divList" style="margin-top:60px;min-height:400px;width:1250px">
+    <modal lolo="AddUpdateModel" modal-body="body" modal-footer="footer" modal-header="header" data-ng-click-right-button="myRightButton()"></modal>
+    <a href="#AddUpdateModel" role="button" class="btn btn-success" data-toggle="modal" ng-click="ClearFields()">Add Gallery</a>
+    <table cellpadding="12" class="table table-bordered table-hover">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Image</b></td>
+            <td><b>Caption</b></td>
+            <td><b>Posted Date</b></td>
+            <td><b>Youtube</b></td>
+            <td><b>Action</b></td>
+        </tr>
+        <tr ng-repeat="gallery in galleries">
+            <td>
+                {{$index + 1 }}
+            </td>
+            <td>
+                <img ng-src="/Handler/galleryThumbnailHandler.ashx?id={{gallery.id}}" style="height:100px;" />
+            </td>
+            <td>
+                {{gallery.caption}}
+            </td>
+            <td>
+                {{gallery.postedDate.slice(6,-2) |  date:'yyyy-MM-dd'}}
+            </td>
+            <td>
+                {{gallery.ytubeLink}}
+            </td>
+            <td>
+                <a href="#AddUpdateModel" role="button" data-ng-click="editRecord(gallery)" class="btn btn-success" data-toggle="modal">Edit</a>
+                <span data-ng-click="deleteRecord(gallery)" class="btn btn-danger">Del</span>
+            </td>
+        </tr>
+    </table>
+    <div class="row" style="text-align:center"><span class="loadMore" ng-click="GetAll()"><a>Load More <i class="fa fa-chevron-down"></i></a> </span> <!--<span ng-show="spinner"><i class="fa fa-spinner"></i></span>--></div>
+</div>
+
+<div id="AddUpdateModel" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="divHead">{{Action}} Projects</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="title" class="col-md-2 control-label">Id</label>
+                        <div class="col-md-10">
+                            <input type="text" data-ng-model="gallery.id" name="title" class="form-control" disabled="disabled" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-md-2 control-label">Caption</label>
+                        <div class="col-md-10">
+                            <input type="text" data-ng-model="gallery.caption" name="title" class="form-control" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-md-2 control-label">Youtube</label>
+                        <div class="col-md-10">
+                            <input type="text" data-ng-model="gallery.ytubeLink" name="description" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attachment" class="col-md-2 control-label">Image</label>
+                        <section class="uploadMain">
+                            <div class="col-md-10">
+                                <div ng-show="imageCropStep == 1">
+                                    <br />
+                                    <input type="file" class="form-control" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+                                </div>
+                            </div>
+
+                                <div ng-show="imageCropStep == 2">
+                                    <!-- <image-crop
+                              data-height="200" //shape's height
+                              data-width="150" //shape's width
+                              data-shape="square" //the shape.. square or circle
+                              data-step="imageCropStep"//scope variable that will contain the current step of the crop (1. Waiting for source image; 2. Image loaded, waiting for crop; 3. Crop done)
+                              src="imgSrc" //scope variable that will be the source image for the crop (may be a Blob or base64 string)
+                              data-result-blob="result" //scope variable that will contain the Blob information
+                              data-result="resultDataUrl" //scope variable that will contain the image's base64 string representation
+                              crop="initCrop" //scope variable that must be set to true when the image is ready to be cropped
+                              padding="250" //space, in pixels, rounding the shape
+                              max-size="1024" //max of the image, in pixels
+                            ></image-crop> -->
+
+                                    <image-crop data-height="540"
+                                                data-width="840"
+                                                data-shape="rectangle"
+                                                data-step="imageCropStep"
+                                                src="imgSrc"
+                                                data-result="result"
+                                                data-result-blob="resultBlob"
+                                                crop="initCrop"
+                                                padding="100"
+                                                max-size="1024"></image-crop>
+                                </div>
+
+                                <div ng-show="imageCropStep == 2">
+                                    <br />
+                                    <button ng-click="clear()">Cancel</button>
+                                    <button ng-click="initCrop = true">Crop</button>
+                                </div>
+
+                                <div ng-show="imageCropStep == 3">
+                                    <img ng-src="{{result}}" class="cropped" data-ng-model="gallery.base64"></img>
+
+                                    <button ng-click="clear()">Cancel</button>
+
+                                </div>
+
+                        </section>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-ng-click="AddUpdateRecord(gallery);">Save</button>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,4 +1,4 @@
-﻿.main-content{margin:7% auto}
+﻿.main-content{margin:100px auto}
 *{box-sizing:border-box;}       
 .row::after {
     content: "";
@@ -47,8 +47,8 @@
       #triangle-topleft {width: 0;height: 0;border-top: 40px solid #3e9bd6;border-right: 40px solid transparent;float:right;}
     #triangle-topright {width: 0;height: 0;border-top: 40px solid #3e9bd6;border-left: 40px solid transparent;   float:right;}
     #title-box{display:inline-flex;}
-    #title{min-width:300px;background-color: #3e9bd6;font-size:24px;color:aliceblue;padding:1% 5%;display:inline-block;/*box-shadow: -2px 2px 5px #888888;*/}
-    .title-centre{margin:0 36%; text-align:center}
+    #title{min-width:300px;background-color: #3e9bd6;font-size:21px;color:aliceblue;padding:1% 5%;display:inline-block;/*box-shadow: -2px 2px 5px #888888;*/}
+    .title-centre{margin:auto; text-align:center}
 
        footer{width:100%;min-height:200px;clear:both;margin-top:20px;color:#CBCBCB;text-align:justify; font-size:16px; }
        footer a{color:aliceblue;text-decoration:none}
@@ -146,12 +146,13 @@
     #foot-networking-icon{display:none}
     #triangle-up-bg{width:400px;}
 }
-
- /*for tablets*/
-@media only Screen and (min-width: 600px){
-         /**for database generated datas*/
-
-     .list-view{clear:both}
+#foot-networking-icon {
+    display: none
+}
+/*for tablets*/
+@media only Screen and (min-width: 600px) {
+    /**for database generated datas*/
+    .list-view{clear:both}
      .pull-left-cont   { max-width:540px;}
      .inner-row-2{max-width: 850px;}
      container{ max-width:1100px; width:100%;/* border:0.1em solid #CFCFCF;*/ margin:auto;margin-top:20px; display:block;  } 
@@ -298,14 +299,14 @@
     h3{
      
     }
-      body {
-        font-family: 'Dosis', sans-serif;
-        /*font-family: 'Cabin', sans-serif;*/
-        margin: 0px;
-        padding: 0px;
-        background-color: #ffffff;
-        color: #2B2B2B;
-      }
+body {
+    font-family: 'Titillium Web', sans-serif;
+    /*font-family: 'Cabin', sans-serif;*/
+    margin: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+    color: #2B2B2B;
+}
           
 
 

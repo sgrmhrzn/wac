@@ -1,16 +1,21 @@
-﻿<container ng-controller="ProjectController" style="min-height:950px;">
+﻿<container style="min-height:950px;">
             <!--ongoing projects-->
             <article id="title-box"><div id="title">On Going Projects</div><div id="triangle-topleft"></div></article>
     <div class="col-12 col-m-12">
-        <div ng-show="loading" class="loading"></div>
+        
         <article ng-repeat="project in ongoingProjects" id="mini-container-3" class="col-13 col-m-8" style="background-image:url('../../Handler/ProjectThumbnailHandler.ashx?id={{project.id}}');background-size:cover;background-repeat:no-repeat">
             <div class="textTitle">
                 <h3 style="height:100px;">{{project.title}}</h3>
-                <span class="btnReadmore"><a href="/Projects/Detail/{{project.id}}" ng-click="getProjectById(project)">Read More >></a></span>
+                <span class="btnReadmore"><a ui-sref="projects.detail({id: project.id})" >Read More >></a></span>
             </div>
         </article>
-        <div class="view-all-box"><a href="#">VIEW ALL</a></div>
-
+        
     </div>
-        </div>
+    <div ng-show="loading" class="loading"></div>
+    <div class="row" style="text-align:center">
+    <span class="loadMore" ng-click="getProjects()">
+        <a>Load More <i class="fa fa-chevron-down"></i></a> 
+        </span> 
+    <span  ng-show="spinner"><!--<i class="fa fa-circle-o-notch fa-pulse"></i>--></span>
+    </div>
 </container>

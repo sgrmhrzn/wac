@@ -98,4 +98,9 @@ namespace WACNepal.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class isLoggedInModel
+    {
+        public bool isLoggedIn { get; set; }
+    }
 }

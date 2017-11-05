@@ -4,34 +4,38 @@
            .controller("CPanelCtrl", ["$scope", "entityService",
                function ($scope, entityService) {
                    $scope.divProject = false;
-                   GetAllProjects();
-
-                   //$scope.saveTutorial = function (tutorial) {
-                   //    entityService.saveTutorial(tutorial)
-                   //                 .then(function (data) {
-                   //                     console.log(data);
-                   //                 });
-                   //};
-
                    //To Get All Records  
-                   function GetAllProjects() {
+                   var skip = 0;
+                   var take = 6;
+                   var type = "";
+                   $scope.projects = [];
+                   GetAllProjects(skip, take, type);
+
+                   //getByID();
+                   $scope.getProjects = function () {
+                       skip = skip + 6;
+                       take = take + 6;
+                       GetAllProjects(skip, take, type);
+                   }
+
+                   function GetAllProjects(skipValue, takeValue, type) {
                        $scope.loading = true;
-                       var getData = entityService.getProjects();
+                       var getData = entityService.getProjects(skipValue, takeValue, type);
                        getData.then(function (prj) {
-                           $scope.projects = prj.data;
+                           angular.forEach(prj.data, function (value, key) {
+                               $scope.projects.push(value);
+                           })
                            $scope.loading = false;
                        }, function () {
-                           alert('Error in getting records');
+                           console.log('Error in getting records');
                        });
                    }
 
                    //get record by id
                    $scope.editProject = function (projects) {
-                       debugger;
                        $scope.loading = true;
                        var getData = entityService.getProject(projects.id);
                        getData.then(function (prj) {
-                           $scope.divProject = true;
                            $scope.project = prj.data;
                            $scope.project = {
                                id:projects.id,
@@ -41,9 +45,7 @@
                                duration: projects.duration,
                                ytubeLink: projects.ytubeLink,
                                project_status: projects.project_status
-
                            }
-                           debugger;
                            $scope.loading = false;
                            $scope.Action = "Update";
                        },
@@ -69,9 +71,9 @@
                            var id = $scope.projects.id;
                            var getData = entityService.updateTutorial(id, projects);
                            getData.then(function (data) {
-                               GetAllProjects();
-                               console.log(data);
-                               //alert(msg.data);
+                               $scope.projects = [];
+                               GetAllProjects(0, 6, "");
+                               alert(data);
                                $scope.divProject = false;
                            }, function () {
                                alert('Error in updating record');
@@ -81,38 +83,29 @@
                            var getData = entityService.saveTutorial(projects);
                            //console.log(projects.title, projects.base64)
                            getData.then(function (data) {
-                               GetAllProjects();
-                               console.log(data);
-                               //alert(msg.data);
-                               $scope.divProject = false;
+                               $scope.projects = [];
+                               GetAllProjects(0, 6 , "");
+                               alert(data);
                            }, function () {
                                alert('Error in adding record');
                            });
                        }
-                       debugger;
-                       GetAllProjects();
-                       $scope.refresh();
                    }
 
-                   $scope.deleteEmployee = function (project) {
-                       var getData = entityService.deleteRecord(project);
+                   $scope.delete = function (id) {
+                       var getData = entityService.deleteRecord(id);
                        getData.then(function (data) {
-                           GetAllProjects();
-                           console.log(data);
-                           alert(msg.data);
-                           $scope.divProject = false;
+
+                           alert(data.data);
+                           $scope.projects = [];
+                           GetAllProjects(0, 6, "");
                        }, function () {
                            alert('Error in adding record');
                        });
                    }
 
-                   $scope.AddProjectDiv = function () {
-                       ClearFields();
+                   $scope.ClearFields = function () {
                        $scope.Action = "Add";
-                       $scope.divProject = true;
-                   }
-
-                   function ClearFields() {
                        $scope.project={
                            id: "",
                            title: "",

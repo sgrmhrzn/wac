@@ -15,7 +15,7 @@ $(window).scroll(function () {
             }, 200);
 
             $('#static-menu').stop().animate({
-                width: '720px',
+                width: '745px',
             }, 200);
 
             $('#logo').stop().animate({
@@ -46,7 +46,7 @@ $(window).scroll(function () {
             }, 200);
 
             $('#static-menu').stop().animate({
-                width: '750px',
+                width: '775px',
             }, 200);
 
             $('#logo').stop().animate({
@@ -59,7 +59,7 @@ $(window).scroll(function () {
                 top: '60px'
             }, 200);
             $('.inner-menu').stop().show({
-                top: '40px'
+                top: '0px'
             }, 200);
             
         }

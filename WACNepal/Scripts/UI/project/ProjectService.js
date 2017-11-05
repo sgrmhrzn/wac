@@ -13,23 +13,35 @@
     this.getAction = function () {
        return action;
     };
-
-    //get All Eployee
-    this.getCompletedProjects = function () {
-        return $http.get("/Projects/CompletedProjects");
-    };
-
-    this.getOnGoingProjects = function () {
-        return $http.get("/Projects/OngoingProjects")
+    this.getCompletedProjects = function (skip, take) {
+        var response = $http({
+            method: "get",
+            url: "/Projects/CompletedProjects",
+            params: {
+                skipNo: skip,
+                takeNo: take
+            }
+        });
+        return response;
     }
-
+    this.getOnGoingProjects = function (skip, take) {
+        var response = $http({
+            method: "get",
+            url: "/Projects/OngoingProjects",
+            params: {
+                skipNo: skip,
+                takeNo: take
+            }
+        });
+        return response;
+    }
     // get Employee By Id
     this.getProject = function (prjID) {
         var response = $http({
             method: "get",
             url: "/Projects/getProjectById",
             params: {
-                id: JSON.stringify(prjID)
+                id: prjID
             }
         });
         return response;

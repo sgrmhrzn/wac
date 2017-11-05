@@ -1,57 +1,59 @@
 ﻿app.service("newsService", function ($http) {
-    var mainObject = {};
-    var action = '';
 
-    this.addNewsObject = function (newObj) {
-        mainObject = newObj;
-        action = 'newsPage'
-    };
+    this.getNews = function (skip, take) {
+        var response = $http({
+            method: "get",
+            url: "/news/getAllNews",
+            params: {
+                skipNo: skip,
+                takeNo: take
+            }
+        });
+        return response;
+    }
 
-    //Send object to detail controller
-    this.getNewsObject = function () {
-        return mainObject;
-    };
-
-    this.getAction = function () {
-        return action ;
-    };
-    //get All CompletedProjects
-    this.getCompletedProjects = function () {
-        return $http.get("/Home/CompletedProjects");
-    };
-
-    //get All OnGoingProjects
-    this.getOnGoingProjects = function () {
-        return $http.get("/Home/OngoingProjects")
+    this.getReports = function (skip, take) {
+        var response = $http({
+            method: "get",
+            url: "/news/getAllReports",
+            params: {
+                skipNo: skip,
+                takeNo: take
+            }
+        });
+        return response;
+    }
+    this.getCareer = function (skip, take) {
+        var response = $http({
+            method: "get",
+            url: "/news/getAllCareers",
+            params: {
+                skipNo: skip,
+                takeNo: take
+            }
+        });
+        return response;
+    }
+    this.getNotice = function (skip, take) {
+        var response = $http({
+            method: "get",
+            url: "/news/getAllNotices",
+            params: {
+                skipNo: skip,
+                takeNo: take
+            }
+        });
+        return response;
     }
 
     // get projects by id
-    this.getProject = function (prjID) {
+    this.getRecord = function (ID) {
         var response = $http({
             method: "get",
-            url: "/Home/getProjectById",
-            params: {
-                id: JSON.stringify(prjID)
-            }
+            url: "/news/getNewsById",
+            params: { id: ID  }
         });
         return response;
     }
 
-
-    // get all Stories
-    this.getAllStories = function () {
-        return $http.get("/Home/getAllStories")
-    }
-
-    // get Stories by id
-    this.getStory = function (stryID) {
-        var response = $http({
-            method: "post",
-            url: "/Home/getStoryById",
-            params: {
-                id: JSON.stringify(stryID)
-            }
-        });
-        return response;
-    }
 });

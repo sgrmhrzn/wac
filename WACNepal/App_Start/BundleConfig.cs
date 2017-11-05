@@ -25,15 +25,11 @@ namespace WACNepal
 
         //       );
 
-
-        bundles.Add(new Bundle("~/bundles/UIScripts")
-          .Include("~/Scripts/jquery-{version}.js")
-          .Include("~/js/angular.js"));
-
         bundles.Add(new Bundle("~/bundles/UI")
                     .Include("~/Scripts/jquery-3.1.1.min.js")
                     .Include("~/Scripts/AngularJs/angular.js")
-                    .Include("~/Scripts/AngularJs/angular-route.js")
+                    .Include("~/Scripts/AngularJs/angular-ui-route.js")
+                    .Include("~/Scripts/AngularJs/angular-sanitize.min.js")
                     .Include("~/Scripts/CustomJS/custom.js")
                     .Include("~/Scripts/UI/Module.js")
                     .Include("~/Scripts/UI/home/HomeController.js")

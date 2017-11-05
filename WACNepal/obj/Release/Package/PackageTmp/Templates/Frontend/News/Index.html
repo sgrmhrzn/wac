@@ -1,0 +1,42 @@
+﻿<style>    .image {
+        width: 150px;
+        height: 100px;
+        float: left;
+        margin:0 3% 0 0;
+    }
+    .col-6, .col-m-6{padding:0px}
+    .news{height:120px;margin:3%;border-bottom:thin solid gray}
+</style>
+<container style="min-height:950px;">
+    <section class="row" style="margin:5% auto;min-height:400px;border-top: thin solid #cecece ">
+        <section ng-controller="newsController" class="col-7 col-m-6">
+            <article id="title-box">
+                <div id="title">Updates</div>
+                <div id="triangle-topleft"></div>
+            </article>
+            <article class="news" ng-repeat="news in allNews">
+                <img src="../../../Handler/NewsThumbnailHandler.ashx?id={{news.id}}" class="image" />
+                <a ui-sref="news.detail({id: news.id})">{{news.title}}</a>
+                <div>{{news.date}}</div>
+            </article>
+            <div ng-show="loading" class="loading"></div>
+            <div class="row" style="text-align:center"><span class="loadMore" ng-click="getAllNews()"><a>Load More <i class="fa fa-chevron-down"></i></a> </span> <!--<span ng-show="spinner"><i class="fa fa-spinner"></i></span>--></div>
+        </section>
+
+        <section ng-controller="reportController" class="col-5 col-m-6">
+            <article id="title-box">
+                <div id="title">Reports</div>
+                <div id="triangle-topleft"></div>
+            </article>
+            <article class="news" ng-repeat="report in allReports">
+                <img src="../../../Handler/NewsThumbnailHandler.ashx?id={{report.id}}" class="image" />
+                <a ui-sref="news.detail({id: report.id})">{{report.title}}</a>
+                <div>{{report.date}}</div>
+            </article>
+            <div ng-show="loading" class="loading"></div>
+            <div class="row" style="text-align:center"><span class="loadMore" ng-click="getAllReport()"><a>Load More <i class="fa fa-chevron-down"></i></a> </span> <!--<span ng-show="spinner"><i class="fa fa-spinner"></i></span>--></div>
+        </section>
+
+    </section>
+</container>
+

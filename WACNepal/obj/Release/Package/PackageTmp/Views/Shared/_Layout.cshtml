@@ -6,9 +6,29 @@
     <title>WACNepal</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link async href="../../../Content/home.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Scripts/lighbox/css/lightbox.css" rel="stylesheet" />
     @Styles.RenderFormat(@"<link async href=""{0}"" rel='stylesheet'/>", "~/css/UIall")
-    @Scripts.RenderFormat(@"<script src=""{0}"" async></script>", "~/bundles/UI")
-    <link async href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    @*@Scripts.RenderFormat(@"<script src=""{0}"" async></script>", "~/bundles/UI")*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/CustomJS/custom.js"></script>
+    <script src="~/Scripts/lighbox/js/lightbox.js"></script>
+    <script src="~/Scripts/AngularJs/angular.min.js"></script>
+    <script src="~/Scripts/AngularJs/angular-ui-route.js"></script>
+    <script src="~/Scripts/AngularJs/angular-sanitize.min.js"></script>
+    <script src="~/Scripts/UI/Module.js"></script>
+
+    <script src="~/Scripts/UI/home/HomeController.js"></script>
+    <script src="~/Scripts/UI/home/HomeService.js"></script>
+    <script src="~/Scripts/UI/news/newsController.js"></script>
+    <script src="~/Scripts/UI/news/newsService.js"></script>
+    <script src="~/Scripts/UI/project/ProjectController.js"></script>
+    <script src="~/Scripts/UI/project/ProjectService.js"></script>
+    <script src="~/Scripts/UI/stories/StoriesController.js"></script>
+    <script src="~/Scripts/UI/stories/StoriesService.js"></script>
+    <script src="~/Scripts/UI/gallery/galleryController.js"></script>
+    <script src="~/Scripts/UI/gallery/galleryService.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet">
     <style>
         #main-loader{position: absolute;padding: 15% 0%;height:800px; text-align: center;background-color:aliceblue;width: 100%;z-index:222; }
     </style>
@@ -40,31 +60,64 @@
     </div>
     <header>
         <nav>
-            <section class="row-1"><div class="inner-menu">@*LANGUAGE*@</div></section>
+            <section style="padding: 0px 100px;">
+                <div class="inner-menu">
+                    <article class="inner-nav" style="float:right">
+                        <a ui-sref="noticeCareer">NOTICE/CAREER</a>
+                        <a ui-sref="gallery">GALLERY</a>
+                    </article>
+                    <div id="google_translate_element"></div>
+                                       <script type="text/javascript">
+                                           function googleTranslateElementInit() {
+                                               new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ne', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                                           }
+                                       </script>
+                                       <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>                       
+
+                    
+                </div>
+
+            </section>
+
             <ul id="static-menu">
                 <li class="dropdown">
                     <a class="dropBtn">WHO WE ARE</a>
 
                     <article class="dropdown-content" style="right:-15px;">
                         <span id="triangle-up"></span>
-                        @Html.ActionLink("Profile", "Index", "About")
-                        @Html.ActionLink("Our Team", "OurTeam", "About")
+                        <a ui-sref="about.profile">Profile</a>
+                        <a ui-sref="about.team">Our Team</a>
+                        <a ui-sref="about.projectSummary">Area of Intervention</a>
+                        <a ui-sref="about.network">Network</a>
+                        @*<a ui-sref="stories">Partners</a>*@
+                        <a ui-sref="stories">Guiding Principle</a>
                     </article>
                 </li>
-                <li><a>HOW WE WORK</a></li>
+                <li class="dropdown">
+                    <a ui-sref="ourApproach.workingArea">HOW WE WORK</a>
+                </li>
 
                 <a href="/"><article id="logo"><img src="/Images/logo1.png" width="100%" style="margin: 4px auto auto auto;" /></article></a>
                 <li class="dropdown">
                     <a>WHAT WE DO</a>
                     <article class="dropdown-content" style="right:-15px;">
                         <span id="triangle-up"></span>
-                        @Html.ActionLink("News", "Index", "projects")
-                        @Html.ActionLink("Projects", "Index", "projects")
-                        @Html.ActionLink("Success Stories", "Index", "Stories")
-                    </article>
+                        <a ui-sref="news">News</a>
+                        <ul style="width:220px;">
+                            <li class="inner-dropdown">
+                                <a>Projects</a>
+                                <article class="inner-dropdown-content">
+                                    <a ui-sref="projects.ongoing">Ongoing</a>
+                                    <a ui-sref="projects.completed">Completed</a>
+                                </article>
+                            </li>
+                        </ul>
+
+                        <a ui-sref="stories"> Success Stories</a>
+                    </article> 
                 </li>
 
-                <li>@Html.ActionLink("CONTACT US", "Index", "Contact")</li>
+                <li><a ui-sref="contact">CONTACT</a></li>
 
             </ul>
 
@@ -75,7 +128,7 @@
     </header>
 
     @RenderBody()
-    <div class="main-content" ng-view></div>
+    <div class="main-content" ui-view></div>
     <footer>
         <div id="triangle-up-bg"></div>
         <div style="background-color:#0f202f">
@@ -93,7 +146,7 @@
                         </article>
 
                         <article class="col-5 col-m-5" id="footer_menu" style="color:aliceblue">
-                            <div>©2016 |  WAC Nepal  <br />  Achham, Nepal <br /> 01-4424179, 01-4424199 <br /> info@wacnepalachham.org.np  </div>
+                            <div>©2016 |  WAC Nepal  <br />  Achham, Nepal <br /> info@wac.org.np  </div>
                         </article>
                         <article class="col-5 col-m-6" id="footer_menu" style="position:absolute;right:-600px">
                             <ul id="foot-networking-icon">
@@ -114,13 +167,8 @@
         </div>
 
         <section class="row-4" id="bottom-footer" style="height:50px;border-top: 0.1em solid #757575;color:#0f202f;font-weight:bold">
-           Design & Develop By<a href="http://www.pritisharma.com.np" target="_blank">Priti & <a href="http://www.sagarmaharjan.com.np" target="_blank">Sagar</a></a><span style="float:right">Powered by: Sristy-ive </span>
+           Develop By<a href="http://www.sagarmaharjan.com.np" target="_blank">Sagar</a></a><span style="float:right">Powered by: Sristy-ive </span>
         </section>
     </footer>
 </body>
-
-
-
-
-
 </html>

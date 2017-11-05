@@ -1,6 +1,6 @@
 ﻿.content-heading-3 a{  clear:both;color: #097300;margin:auto;font-size:110%;text-align:center;text-decoration:none}
          .content-heading-3 a:hover {  color: #F6931E;cursor:pointer;text-decoration:underline}
-
+         
 #imgslider { 
     margin: auto; 
     width: 100%; 
@@ -16,9 +16,15 @@
 #mini-container-3{background-color: gray;margin:2%;height:220px;padding:0px;}
 
 .textTitle {visibility:hidden;}
-#mini-container-3:hover .textTitle{visibility:visible;opacity:0.7;background-color:black;color:white;height:100%;text-align:center}   
-#mini-container-3:hover .btnReadmore a{text-decoration:none;height:40px;background-color:#196798;padding:2% 7%;opacity:1;color:aliceblue}
-.btnReadmore a:hover { background-color:#196798;cursor:pointer}
+#mini-container-3:hover .textTitle{visibility:visible;opacity:0.7;background-color:black;color:white;height:100%;text-align:center}
+#mini-container-3:hover .btnReadmore a {text-decoration:none;height:40px;background-color:#196798;padding:2% 7%;opacity:1;color:aliceblue}
+.btnReadmore a:hover {
+    background-color: #196798;
+    cursor: pointer
+}
+.loadMore a:hover {
+    cursor: pointer;
+}
     container {
         
     }
@@ -27,7 +33,7 @@
 .readmore a:hover{/*background-color:#F6931E;*/color:#F6931E;cursor:pointer;text-decoration:underline}
 
 h2{padding:0 2%;} 
-.loading{background-image:url(../../../Images/loader.gif); background-size:100px;background-repeat:no-repeat;height: 100px;background-position: 50%;position: relative;padding: 5% 0%;}
+.loading{background-image:url(../../../Images/loader.gif); background-size:70px;background-repeat:no-repeat;height: 100px;background-position: 50%;position: relative;padding: 5% 0%;clear:both;}
 .view-all-box{display:inline-block;width:95%}
 .view-all-box a{padding:0 3%;border:thin solid orange;float:right;color:orangered;font-size:20px;}
 .view-all-box a:hover{background-color:orange;color:aliceblue}

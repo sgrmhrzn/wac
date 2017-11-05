@@ -1,15 +1,21 @@
 ﻿#responsive-menu a:hover, nav ul a:hover{   color:yellow;cursor:pointer;}
 .dropdown {display:inline;position:relative}
 .dropdown-content{display:none;}
-.dropdown-content a{padding: 10px 40px 0px 30px; text-align:justify}
+.dropdown-content a{padding: 10px 0px 0px 30px; text-align:left}
 .dropdown:hover .dropdown-content{display:block}
+
+.inner-dropdown-content{display:none;position:absolute;left:200px;}
+.inner-dropdown {display:inline;position:relative;padding:0px}
+.inner-dropdown:hover .inner-dropdown-content{display:block}
 
 #responsive-menu{ display: none;  }
          
 header{padding:0px; position:fixed;width:100%; z-index:222;top:0px;  }
 
         nav{ border-bottom:2px solid #3e9bd6;height:80px;margin:auto;width:100%;background-color:#3e9bd6;position:fixed}
-        .inner-menu{height:20px;border-bottom:thin solid #5aaadc}
+        .inner-menu{height:20px;color:aliceblue}
+        .inner-nav a{padding:0px 5px;color:aliceblue}
+        .inner-nav a:hover{color:yellow;}
         #logo{width:105px; height:105px;margin:-20px auto; border-radius: 50px;}
 
         .secondary-menu{ height:30px; background-color:aliceblue; width:100%; }
@@ -30,7 +36,6 @@ header{padding:0px; position:fixed;width:100%; z-index:222;top:0px;  }
 
                       #navWrap {   margin: auto; width: 90%; height: 60px;   }
 
-                      #responsive-menu{    }
                                       /*
                 ******n scroll function css for Menu and logo
                 */  .sticky {  position: fixed;top:0;margin:auto;background-color: aliceblue;left: 0px;border-bottom: thin solid #D4D4D4;z-index: 2;box-shadow: 1px 1px 10px 0px #797979;width: 100%;  }
@@ -44,15 +49,15 @@ header{padding:0px; position:fixed;width:100%; z-index:222;top:0px;  }
 @media(min-width: 760px){
                            /*dropdwonmenu*/
                        .dropdown-content{position:absolute;background-color:aliceblue;top:60px;border-bottom: 2px solid #097300; }
-                       .dropdown-content a{background-color:aliceblue;width:185px;color:#2B2B2B}
-                       .dropdown-content a:hover{width:185px;color:#3e9bd6}
+                       .dropdown-content a{background-color:aliceblue;width:220px;color:#2B2B2B}
+                       .dropdown-content a:hover{color:#3e9bd6}
 
                        
 
 
                 #menuIcon{display:none}
                 #responsive-menu{display:none}
-                nav ul{  margin: auto;height:65px;width:760px;padding:0px}
+                nav ul{  margin: auto;height:65px;width:785px;padding:0px}
 
                 nav ul a{ height:45px; font-size: 19px; display: block; float: left;padding:0px 25px 0px 25px; text-align: center;text-decoration: none;color:aliceblue ;   }
                 nav ul li{float:left;list-style:none;display:block;padding:20px 0px;}

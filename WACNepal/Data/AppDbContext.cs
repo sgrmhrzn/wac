@@ -19,6 +19,8 @@ namespace WACNepal.Data
 
         public DbSet<news_tb> AllNews { get; set; }
 
+        public DbSet<Gallery> gallery { get; set; }
+
         //public IDbSet<price_tb> price { get; set; }
 
 
