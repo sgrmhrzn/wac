@@ -3,7 +3,7 @@
     this.getAll = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/Gallery/GetAll",
+            url: "api/gallery",
             params: {
                 skipNo: skip,
                 takeNo: take

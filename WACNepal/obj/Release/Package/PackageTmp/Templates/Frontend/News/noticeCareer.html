@@ -4,11 +4,13 @@
         float: left;
         margin:0 3% 0 0;
     }
-    .defaultImage{
-        background-image:url('../../../Images/logo1.png');
-        border:thin solid #b7b7b7;;
-        background-repeat:no-repeat;
-        background-position-x:25px;
+    .defaultImage {
+        background-image: url(./../../../Images/logo1.png);
+        border: thin solid #b7b7b7;
+        background-repeat: no-repeat;
+        background-position-x: 0px;
+        background-position-y: -30px;
+        background-size: 160px;
     }
     .col-6, .col-m-6{padding:0px}
     .news{height:120px;margin:3%;border-bottom:thin solid gray}
@@ -21,7 +23,7 @@
                 <div id="triangle-topleft"></div>
             </article>
             <article class="news" ng-repeat="notice in allNotice">
-                <div ng-if="notice.image != ('' || null)"><img src="../../../Handler/NewsThumbnailHandler.ashx?id={{notice.id}}" class="image" /></div>
+                <div ng-if="notice.image != ('' || null)"><img ng-src="../../../Handler/NewsThumbnailHandler.ashx?id={{notice.id}}" class="image" /></div>
                 <div ng-if="notice.image == ('' || null)"><div class="defaultImage image" /></div>
                 <a ui-sref="news.detail({id: notice.id})">{{notice.title}}</a>
                 <div>{{notice.date}}</div>
@@ -36,7 +38,7 @@
                 <div id="triangle-topleft"></div>
             </article>
             <article class="news" ng-repeat="career in allCareer">
-                <div ng-if="career.image != ('' || null)"><img src="../../../Handler/NewsThumbnailHandler.ashx?id={{career.id}}" class="image" /></div>
+                <div ng-if="career.image != ('' || null)"><img ng-src="../../../Handler/NewsThumbnailHandler.ashx?id={{career.id}}" class="image" /></div>
                 <div ng-if="career.image == ('' || null)"><div class="defaultImage image" /></div>
                 <a ui-sref="news.detail({id: career.id})">{{career.title}}</a>
                 <div>{{career.date}}</div>

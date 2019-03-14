@@ -1,24 +1,25 @@
 ﻿"use strict";
 (function () {
     angular.module("application")
-           .factory("newsEntityService", ["akNewsService", function (akNewsService) {
+        .factory("newsEntityService", ["akNewsService", function (akNewsService) {
+            const url = "api/news";
                var saveRecord = function (record) {
-                   return akNewsService.saveModel(record, "/News/SaveNews");
+                   return akNewsService.saveModel(record, url);
                }
                var getRecords = function (skip, take, type) {
-                   return akNewsService.getModel("/News/getAll", skip, take, type);
+                   return akNewsService.getModel(url, skip, take, type);
                }
                
                var getRecord = function (ID) {
-                   return akNewsService.getNewsById(ID, "/News/getNewsById");
+                   return akNewsService.getNewsById(ID, url);
                }
 
                var updateRecord = function (id, tutorial) {
-                   return akNewsService.updateModel(id, tutorial, "/News/UpdateNews");
+                   return akNewsService.updateModel(id, tutorial, url);
                }
 
                var deleteRecord = function(tutorial){
-                   return akNewsService.deleteRecord(tutorial, "/News/DeleteNews");
+                   return akNewsService.deleteRecord(tutorial, url);
                }
                return {
                    saveRecord: saveRecord,

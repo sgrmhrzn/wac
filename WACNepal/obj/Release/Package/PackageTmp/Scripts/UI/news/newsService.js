@@ -1,9 +1,9 @@
 ﻿app.service("newsService", function ($http) {
-
+    const url = "api/news";
     this.getNews = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/news/getAllNews",
+            url: `${url}/updates`,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -15,7 +15,7 @@
     this.getReports = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/news/getAllReports",
+            url: `${url}/reports`,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -26,7 +26,7 @@
     this.getCareer = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/news/getAllCareers",
+            url: `${url}/vacancies`,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -37,7 +37,7 @@
     this.getNotice = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/news/getAllNotices",
+            url: `${url}/notices`,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -50,7 +50,7 @@
     this.getRecord = function (ID) {
         var response = $http({
             method: "get",
-            url: "/news/getNewsById",
+            url: url,
             params: { id: ID  }
         });
         return response;

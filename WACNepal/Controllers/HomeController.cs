@@ -27,59 +27,5 @@ namespace WACNepal.Controllers
             return View();
         }
 
-        [GZipOrDeflate]
-        public JsonResult OnGoingProjects()
-        {
-            var projectList = db.AllProjects.ToList().Where(s => s.project_status == "ongoing").OrderByDescending(s => s.id).Take(2);
-            var jsonResult = Json(projectList, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
-        }
-
-        [GZipOrDeflate]
-        public JsonResult CompletedProjects()
-        {
-            var projectList = db.AllProjects.ToList().Where(s => s.project_status == "completed").OrderByDescending(s => s.id).Take(3);
-                var jsonResult = Json(projectList, JsonRequestBehavior.AllowGet);
-                jsonResult.MaxJsonLength = int.MaxValue;
-                return jsonResult;
-        }
-
-
-        public JsonResult getProjectById(string PrjId)
-        {
-            int no = Convert.ToInt32(PrjId);
-            var ProjectList = db.AllProjects.Find(no);
-            var jsonResult = Json(ProjectList, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
-        }
-
-        [GZipOrDeflate]
-        public JsonResult getAllStories()
-        {
-            var stories = db.successStories.ToList().OrderByDescending(s => s.id).Take(2);
-            var jsonResult = Json(stories, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
-        }
-
-        [GZipOrDeflate]
-        public JsonResult getAllNews()
-        {
-            var news = db.AllNews.ToList().OrderByDescending(s => s.id).Take(5);
-            var jsonResult = Json(news, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
-        }
-
-        public JsonResult getNewsById(string ID)
-        {
-            int no = Convert.ToInt32(ID);
-            var news = db.AllNews.Find(no);
-            var jsonResult = Json(news, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
-        }
     }
 }

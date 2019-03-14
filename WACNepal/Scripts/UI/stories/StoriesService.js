@@ -1,11 +1,11 @@
 ﻿app.service("StoriesService", function ($http) {
+    const url = "api/stories";
 
-   
     // get Employee By Id
     this.getAllStories = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/Stories/getAllStories",
+            url: url,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -17,7 +17,7 @@
     this.getStory = function (stryID) {
         var response = $http({
             method: "get",
-            url: "/Stories/getStoryById",
+            url: url,
             params: {
                 id: stryID
             }

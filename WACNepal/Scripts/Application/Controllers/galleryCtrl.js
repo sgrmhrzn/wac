@@ -97,7 +97,7 @@
                    $scope.deleteRecord = function (story) {
                        var getData = galleryService.deleteRecord(story.id);
                        getData.then(function (msg) {
-                           alert(msg.data);
+                           alert(msg);
                            $scope.galleries = [];
                            GetAll(0, 6);
                        }, function () {

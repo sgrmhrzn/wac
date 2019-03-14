@@ -85,19 +85,19 @@
                            getData.then(function (data) {
                                $scope.news = [];
                                GetAll(0, 6, "");
-                               alert(msg.data);
+                               alert(data);
                            }, function () {
                                alert('Error in adding record');
                            });
                        }
                    }
 
-                   $scope.deleteRecord = function (story) {
-                       var getData = newsEntityService.deleteRecord(story);
+                   $scope.deleteRecord = function (id) {
+                       var getData = newsEntityService.deleteRecord(id);
                        getData.then(function (data) {
                            $scope.news = [];
                            GetAll(0, 6, "");
-                           alert(msg.data);
+                           alert(data);
                        }, function () {
                            alert('Error in adding record');
                        });

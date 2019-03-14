@@ -96,7 +96,7 @@
                        var getData = entityService.deleteRecord(id);
                        getData.then(function (data) {
 
-                           alert(data.data);
+                           alert(data);
                            $scope.projects = [];
                            GetAllProjects(0, 6, "");
                        }, function () {

@@ -1,31 +1,33 @@
 ﻿"use strict";
 (function () {
     angular.module("application")
-           .factory("entityService", ["akProjectService", function (akProjectService) {
-               var saveTutorial = function (tutorial) {
-                   return akProjectService.saveModel(tutorial, "/Projects/SaveTutorial");
-               };
-               var getProjects = function (skip, take, type) {
-                   return akProjectService.getModel("/Projects/GetProjects", skip, take, type);
-               }
+        .factory("entityService", ["akProjectService", function (akProjectService) {
+            const url = "api/projects";
 
-               var getProject = function (prjID) {
-                   return akProjectService.getProjectById(prjID, "/Projects/getProjectById");
-               }
+            var saveTutorial = function (tutorial) {
+                return akProjectService.saveModel(tutorial, url);
+            };
+            var getProjects = function (skip, take, type) {
+                return akProjectService.getModel(url, skip, take, type);
+            }
 
-               var updateTutorial = function (id, tutorial) {
-                   return akProjectService.updateModel(id, tutorial, "/Projects/UpdateProject");
-               }
+            var getProject = function (prjID) {
+                return akProjectService.getProjectById(prjID, url);
+            }
 
-               var deleteRecord = function(id){
-                   return akProjectService.deleteRecord(id, "/Projects/Delete");
-               }
-               return {
-                   saveTutorial: saveTutorial,
-                   getProjects: getProjects,
-                   getProject: getProject,
-                   updateTutorial: updateTutorial,
-                   deleteRecord: deleteRecord
-               };
-           }]);
+            var updateTutorial = function (id, tutorial) {
+                return akProjectService.updateModel(id, tutorial, url);
+            }
+
+            var deleteRecord = function (id) {
+                return akProjectService.deleteRecord(id, url);
+            }
+            return {
+                saveTutorial: saveTutorial,
+                getProjects: getProjects,
+                getProject: getProject,
+                updateTutorial: updateTutorial,
+                deleteRecord: deleteRecord
+            };
+        }]);
 })();

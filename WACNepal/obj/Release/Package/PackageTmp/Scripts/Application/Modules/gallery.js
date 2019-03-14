@@ -16,9 +16,9 @@
                        $http({
                            url: url,
                            method: "POST",
-                           data: getModelAsFormData(data),
-                           transformRequest: angular.identity,
-                           headers: { 'Content-Type': undefined }
+                           data: data,
+                           //transformRequest: angular.identity,
+                           headers: { 'Content-Type': 'application/json' }
                        }).success(function (result) {
                            deferred.resolve(result);
                        }).error(function (result, status) {
@@ -31,15 +31,15 @@
                    var updateModel = function (id, data, url) {
                        var deferred = $q.defer();
                        $http({
-                           method: "POST",
+                           method: "PUT",
                            url: url,
-                           data: getModelAsFormData(data),
+                           data: data,
                            datatype: "JSON",
                            params: {
                                id: JSON.stringify(id)
                            },
-                           transformRequest: angular.identity,
-                           headers: { 'Content-Type': undefined }
+                           //transformRequest: angular.identity,
+                           headers: { 'Content-Type': 'application/json' }
                        }).success(function (result) {
                            deferred.resolve(result);
                        }).error(function (result, status) {
@@ -52,7 +52,7 @@
                    //get All Eployee
                    var getModel = function (url, skip, take) {
                        var response = $http({
-                           method: "post",
+                           method: "GET",
                            url: url,
                            params: {
                                skipNo: skip,
@@ -65,7 +65,7 @@
                    // get Employee By Id
                    var getRecordById = function (id, url) {
                        var response = $http({
-                           method: "post",
+                           method: "GET",
                            url: url,
                            params: {
                                id: JSON.stringify(id)
@@ -76,15 +76,15 @@
 
                    var deleteRecord = function (id, url) {
                        var response = $http({
-                           method: "post",
+                           method: "DELETE",
                            url: url,
                            params: {
                                id:id
                            },
-                           transformRequest: angular.identity,
+                           //transformRequest: angular.identity,
                            dataType: "json"
                          
-                       }); debugger;
+                       }); 
                        return response;
                    }
                    return {

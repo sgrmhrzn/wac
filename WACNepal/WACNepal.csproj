@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -200,6 +201,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\GalleryController.cs" />
+    <Compile Include="API\HomeController.cs" />
+    <Compile Include="API\NewsController.cs" />
+    <Compile Include="API\ProjectsController.cs" />
+    <Compile Include="API\StoriesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -211,7 +217,6 @@
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\projectImageApiController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\StoriesController.cs" />
     <Compile Include="Core\Gallery.cs" />
@@ -250,6 +255,11 @@
     <Compile Include="Handler\StoriesThumbnailHandler.ashx.cs">
       <DependentUpon>StoriesThumbnailHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902231000483_second-iteration.cs" />
+    <Compile Include="Migrations\201902231000483_second-iteration.Designer.cs">
+      <DependentUpon>201902231000483_second-iteration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\projectViewModel.cs" />
@@ -557,12 +567,17 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Templates\Frontend\Home\Index.html" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_CPanelLayout.cshtml" />
+    <Content Include="Templates\Frontend\Projects\Detail.html" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -573,31 +588,28 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_CPanelLayout.cshtml" />
-    <Content Include="Views\CPanel\Index.cshtml" />
-    <Content Include="Views\CPanelStories\_ViewStart.cshtml" />
-    <Content Include="Templates\Frontend\Projects\Detail.html" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Stories\Index.cshtml" />
-    <Content Include="Views\Projects\Completed.cshtml" />
-    <Content Include="Views\Projects\Ongoing.cshtml" />
-    <Content Include="Views\Projects\Detail.cshtml" />
-    <Content Include="Scripts\tinymce\langs\readme.md" />
-    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
-    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
-    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
-    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
-    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
-    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\CPanelStories\Index.cshtml" />
-    <Content Include="Views\CPanel\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\ControlPanel\Index.cshtml" />
+    <Content Include="Views\ControlPanel\_ViewStart.cshtml" />
     <Content Include="Views\CPanelNews\Index.cshtml" />
     <Content Include="Views\CPanelNews\_ViewStart.cshtml" />
-    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\CPanelStories\Index.cshtml" />
+    <Content Include="Views\CPanelStories\_ViewStart.cshtml" />
+    <Content Include="Views\CPanel\Index.cshtml" />
     <Content Include="Views\CPanel\success.cshtml" />
+    <Content Include="Views\CPanel\_ViewStart.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Projects\Completed.cshtml" />
+    <Content Include="Views\Projects\Detail.cshtml" />
+    <Content Include="Views\Projects\OnGoing.cshtml" />
+    <Content Include="Views\Stories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
@@ -618,6 +630,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902231000483_second-iteration.resx">
+      <DependentUpon>201902231000483_second-iteration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

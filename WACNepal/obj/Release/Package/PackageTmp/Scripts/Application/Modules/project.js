@@ -16,36 +16,32 @@
                        $http({
                            url: url,
                            method: "POST",
-                           data: getModelAsFormData(data),
-                           transformRequest: angular.identity,
-                           headers: { 'Content-Type': undefined }
+                           data: data,
+                           headers: { 'Content-Type': 'application/json' }
                        }).success(function (result) {
                            deferred.resolve(result);
                        }).error(function (result, status) {
                            deferred.reject(status);
                        });
-                       debugger;
                        return deferred.promise;
                    };
 
                    var updateModel = function (id, data, url) {
                        var deferred = $q.defer();
                        $http({
-                           method: "POST",
+                           method: "put",
                            url: url,
-                           data: getModelAsFormData(data),
+                           data: data,
                            datatype: "JSON",
                            params: {
                                id: JSON.stringify(id)
                            },
-                           transformRequest: angular.identity,
-                           headers: { 'Content-Type': undefined }
+                           headers: { 'Content-Type': 'application/json' }
                        }).success(function (result) {
                            deferred.resolve(result);
                        }).error(function (result, status) {
                            deferred.reject(status);
                        });
-                       debugger;
                        return deferred.promise;
                    }
                    
@@ -65,7 +61,7 @@
                    // get Employee By Id
                    var getProjectById = function (prjID, url) {
                        var response = $http({
-                           method: "post",
+                           method: "get",
                            url: url,
                            params: {
                                id: JSON.stringify(prjID)
@@ -76,15 +72,14 @@
 
                    var deleteRecord = function (id, url) {
                        var response = $http({
-                           method: "post",
+                           method: "delete",
                            url: url,
                            params: {
                                id: id
                            },
-                           transformRequest: angular.identity,
-                           dataType: "json"
-                         
-                       }); debugger;
+                        dataType: "json"
+
+                       }); 
                        return response;
                    }
                    return {

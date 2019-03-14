@@ -1,4 +1,5 @@
 ﻿app.service("ProjectService", function ($http) {
+    const url = "api/projects";
     var transferedObject = {};
     var action = '';
     this.addProjectObject = function (newObj) {
@@ -16,7 +17,7 @@
     this.getCompletedProjects = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/Projects/CompletedProjects",
+            url: `${url}/completed`,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -27,7 +28,7 @@
     this.getOnGoingProjects = function (skip, take) {
         var response = $http({
             method: "get",
-            url: "/Projects/OngoingProjects",
+            url: `${url}/ongoing`,
             params: {
                 skipNo: skip,
                 takeNo: take
@@ -39,7 +40,7 @@
     this.getProject = function (prjID) {
         var response = $http({
             method: "get",
-            url: "/Projects/getProjectById",
+            url: url,
             params: {
                 id: prjID
             }

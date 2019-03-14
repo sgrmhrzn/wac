@@ -18,6 +18,8 @@ namespace WACNepal.Controllers
         }
 
         [GZipOrDeflate]
+        [HttpGet]
+
         public JsonResult GetAll(int skipNo, int takeNo)
         {
             var List = (from g in db.gallery select new { g.caption, g.postedDate, g.ytubeLink, g.id}).OrderByDescending(s => s.id).Skip(skipNo).Take(takeNo).ToList();
@@ -27,6 +29,8 @@ namespace WACNepal.Controllers
         }
 
         [GZipOrDeflate]
+        [HttpGet]
+
         public JsonResult GetById(string id)
         {
             int no = Convert.ToInt32(id);
@@ -56,6 +60,7 @@ namespace WACNepal.Controllers
             catch (Exception ex) { return ex.Message; }
         }
 
+        [HttpPut]
         public string Update(string PrjId, Gallery g)
         {
                 db.gallery.Attach(g);
@@ -76,6 +81,7 @@ namespace WACNepal.Controllers
                 db.SaveChanges();
                 return "Updated";
         }
+        [HttpDelete]
         public string Delete(string id)
         {
             int no = Convert.ToInt32(id);
